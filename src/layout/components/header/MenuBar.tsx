@@ -20,7 +20,7 @@ const MenuBar = () => {
         <>
             <IconButton onClick={handleOpenNavMenu} aria-controls="menu-appbar"
                 aria-haspopup="true">
-                <MenuIcon color='info' />
+                <MenuIcon />
             </IconButton>
             <Menu id="menu-appbar" anchorEl={anchorElNav} keepMounted open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} anchorOrigin={{
                 vertical: 'bottom',

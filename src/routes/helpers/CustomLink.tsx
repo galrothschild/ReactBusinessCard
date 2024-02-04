@@ -13,7 +13,7 @@ const CustomLink: React.FC<Props> = ({ to, children, ...props }) => {
     const isActive: Boolean = useMatch({ path: resolvedPath.pathname, end: true })?.pathname === to;
     const style = { color: theme.palette.primary.contrastText, border: `1px solid ${theme.palette.primary.light}`, backgroundColor: theme.palette.primary.main };
     if (isActive) {
-        style.border = `1px solid ${theme.palette.secondary.light}`;
+        style.border = `1px solid ${theme.palette.secondary.dark}`;
         style.color = theme.palette.secondary.contrastText;
         style.backgroundColor = theme.palette.secondary.main;
     }

@@ -12,7 +12,7 @@ interface Props {
 const CardComponent: React.FC<Props> = ({ card }) => {
     const navigate = useNavigate();
     return (
-        <Card sx={{ minWidth: 280, maxWidth: 350 }}>
+        <Card sx={{ minWidth: 280, maxWidth: 350 }} className='shadow-md border border-slate-400'>
             <CardActionArea
                 onClick={() => navigate(`${ROUTES.CARD_DETAILS}/${card._id}`)}
             >

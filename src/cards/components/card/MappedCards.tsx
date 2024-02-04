@@ -1,18 +1,24 @@
-import { Grid, Typography } from '@mui/material';
-import React from 'react';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
+import React, { memo } from 'react';
 import { ICard } from '../../models/CardModel';
 import CardComponent from './CardComponent';
 
 interface Props {
     cards: ICard[];
+    isPending: boolean;
 }
 
-const MappedCards: React.FC<Props> = ({ cards }) => {
-    if (cards && cards.length > 0) {
+const MappedCards: React.FC<Props> = ({ cards, isPending }) => {
+    if (isPending) return (
+        <Box width="100%" sx={{ display: "grid", placeItems: "center", pt: 3 }}>
+            <CircularProgress />
+        </Box>
+    );
+    if (cards && !!cards.length) {
         return (
 
-            <Grid container spacing={2}>
-                {cards.map((card, index) => <Grid item xs={12} md={4} key={`${index}-card`}><CardComponent card={card} /></Grid>)}
+            <Grid container spacing={2} alignItems="center">
+                {cards.map((card, index) => <Grid item xs={12} md={4} key={`${index}-card`} sx={{ placeItems: 'center', display: 'grid' }}><CardComponent card={card} /></Grid>)}
             </Grid>
         ) as React.ReactElement<any, any> | null;
     }
@@ -25,4 +31,4 @@ const MappedCards: React.FC<Props> = ({ cards }) => {
     }
 };
 
-export default MappedCards;
+export default memo(MappedCards);
