@@ -16,13 +16,13 @@ const CardBody: React.FC<Props> = ({ card }) => {
                 sx={{ p: 0, md: 1 }}
             />
             <Divider />
-            <Box>
+            <Box >
                 <Typography variant="body2" color="text.secondary">
                     <Typography variant="subtitle2" component="strong">Phone:{" "}</Typography>
                     {phone}
                 </Typography>
 
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" className="text-nowrap w-64 text-ellipsis overflow-hidden">
                     <Typography variant="subtitle2" component="strong">Address:{" "}</Typography>
                     {street}  {houseNumber}  {city}
                 </Typography>

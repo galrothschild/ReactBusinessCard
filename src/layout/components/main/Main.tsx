@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import React from 'react';
 
 interface Props {
@@ -7,9 +7,11 @@ interface Props {
 
 const Main: React.FC<Props> = ({ children }) => {
     return (
-        <Box className="bg-blue-100 pt-8" sx={{ minHeight: "90vh" }}>
-            {children}
-        </Box >
+        <Box className="bg-blue-100">
+            <Container className="bg-blue-100 pt-8 pb-16" sx={{ minHeight: "90vh", }} >
+                {children}
+            </Container >
+        </Box>
     );
 };
 

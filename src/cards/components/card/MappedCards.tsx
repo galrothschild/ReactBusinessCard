@@ -18,7 +18,7 @@ const MappedCards: React.FC<Props> = ({ cards, isPending }) => {
         return (
 
             <Grid container spacing={2} alignItems="center">
-                {cards.map((card, index) => <Grid item xs={12} md={4} key={`${index}-card`} sx={{ placeItems: 'center', display: 'grid' }}><CardComponent card={card} /></Grid>)}
+                {cards.map((card, index) => <Grid item xs={12} sm={6} md={4} lg={3} key={`${index}-card`} sx={{ placeItems: 'center', display: 'grid' }}><CardComponent card={card} /></Grid>)}
             </Grid>
         ) as React.ReactElement<any, any> | null;
     }
