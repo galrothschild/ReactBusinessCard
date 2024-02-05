@@ -19,7 +19,7 @@ const ErrorPage = () => {
                     </Button>
                 </Grid>
                 <Grid item xs={12} md={4} justifyContent="center">
-                    <img src="/assets/images/broken-robot.png" alt="broken robot" width="100%"
+                    <img src="./assets/images/broken-robot.png" alt="broken robot" width="100%"
 
 
                     />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ICard } from '../../models/CardModel';
-import { CardContent, CardHeader, Avatar, IconButton, Divider, Box, Typography } from '@mui/material';
+import { CardContent, CardHeader, Divider, Box, Typography } from '@mui/material';
 
 interface Props {
     card: ICard;

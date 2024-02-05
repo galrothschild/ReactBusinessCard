@@ -1,5 +1,4 @@
-import { Delete } from '@mui/icons-material';
-import { getFromAPI } from './../../utils/apiService';
+import { getFromAPI } from '../../users/utils/apiService';
 export const getCards = () => {
     return getFromAPI("cards");
 };

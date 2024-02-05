@@ -13,7 +13,7 @@ const AboutPage = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={4} justifyContent="center">
-                    <img src="/assets/images/card.jpg" alt="business card" width="100%"
+                    <img src="./assets/images/card.jpg" alt="business card" width="100%"
 
 
                     />

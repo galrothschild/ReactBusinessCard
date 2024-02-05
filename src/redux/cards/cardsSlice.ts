@@ -1,27 +1,26 @@
-import { createAsyncThunk, createSlice, isPending } from "@reduxjs/toolkit";
-import { getCards } from "./utils/cardsApiService";
-import { store } from "../store";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { ICard } from "../../cards/models/CardModel";
 
-const initialState = { cards: [], isPending: false };
+interface cardsState {
+    cards: ICard[];
+    isPending: boolean;
+}
+
+const initialState: cardsState = { cards: [], isPending: false };
 
 const cardsSlice = createSlice({
     name: "cards",
     initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchCards.fulfilled, (state, action) => {
-                state.isPending = false;
-                state.cards = action.payload;
-            })
-            .addCase(fetchCards.pending, (state) => {
-                state.isPending = true;
-            });
-    }
-});
-
-export const fetchCards = createAsyncThunk(
-    'cards/getCards',
-    getCards
+    reducers: {
+        setCards: (state, action: PayloadAction<ICard[]>) => {
+            state.cards = action.payload
+        },
+        setPending: (state, action: PayloadAction<boolean>) => {
+            state.isPending = action.payload
+        }
+    },
+}
 );
+
+export const { setCards, setPending } = cardsSlice.actions
 export default cardsSlice.reducer;
