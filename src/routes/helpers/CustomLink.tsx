@@ -1,13 +1,13 @@
 import { useTheme } from '@mui/material';
 import React from 'react';
 import { Link, useLocation, useMatch } from 'react-router-dom';
+import { PropsWithChildren } from '../../interfaces';
 
-interface Props {
+interface LinkProps extends PropsWithChildren {
     to: string;
-    children: React.ReactNode;
 }
 
-const CustomLink: React.FC<Props> = ({ to, children, ...props }) => {
+const CustomLink: React.FC<LinkProps> = ({ to, children, ...props }) => {
     const theme = useTheme();
     const resolvedPath = useLocation();
     const isActive: Boolean = useMatch({ path: resolvedPath.pathname, end: true })?.pathname === to;
