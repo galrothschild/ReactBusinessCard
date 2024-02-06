@@ -8,7 +8,7 @@ import ErrorPage from '../../pages/ErrorPage';
 const CardDetailPage = () => {
     const { id } = useParams();
     const cards = useSelector((state: RootState) => state.cards.cards);
-    const currentCard = cards.find(card => card._id === id)
+    const currentCard = cards.find(card => card._id === id) || false
     return (
         currentCard ? <CardComponent card={currentCard} /> : <ErrorPage />
     )

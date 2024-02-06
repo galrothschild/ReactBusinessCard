@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import ROUTES from './helpers/ROUTES';
 import CardsPage from '../cards/pages/CardsPage';
 import ErrorPage from '../pages/ErrorPage';
@@ -13,7 +13,8 @@ const Router = () => {
             <Route path={ROUTES.CARDS} element={<CardsPage />} />
             <Route path={ROUTES.ABOUT} element={<AboutPage />} />
             <Route path={`${ROUTES.CARD_DETAILS}/:id`} element={<CardDetailPage />} />
-            <Route path='*' element={<ErrorPage />} />
+            <Route path='404' element={<ErrorPage />} />
+            <Route path='*' element={<Navigate replace to={"404"} />} />
         </Routes>
     );
 };
