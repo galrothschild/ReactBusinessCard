@@ -20,5 +20,9 @@ export const useForm = (initialForm: Record<string, string>, schema: ObjectSchem
         return error ? error.details[0].message : null;
     }, [schema]);
 
+    const onSubmit = useCallback(()  => {
+        handleSubmit(data)
+    }, [data, handleSubmit])
 
+    
 };

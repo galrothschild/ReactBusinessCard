@@ -1,4 +1,4 @@
-import { getFromAPI } from '../../users/utils/apiService';
+import { getFromAPI } from '../../utlis/apiService';
 export const getCards = () => {
     return getFromAPI("cards");
 };
