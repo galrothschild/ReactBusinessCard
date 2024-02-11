@@ -1,21 +1,14 @@
 import { Container, Typography, Button, Grid } from "@mui/material";
-import React from "react";
 import FormInputs from "./FormInputs";
 interface FormProps {
   title: string;
   inputs: string[];
   colNum: number;
-  onSubmit: Function;
-  onInputChange: Function;
+  formActions: any;
 }
 
-const Form = ({
-  title,
-  inputs,
-  colNum,
-  onSubmit,
-  onInputChange,
-}: FormProps) => {
+const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
+  const { onSubmit, handleChange, errors } = formActions;
   return (
     <Container className="flex flex-col items-center text-center">
       <Typography variant="h2" fontSize={32}>
@@ -41,7 +34,8 @@ const Form = ({
           <FormInputs
             inputs={inputs}
             colNum={colNum}
-            onInputChange={onInputChange}
+            onInputChange={handleChange}
+            errors={errors}
           />
           <Grid item xs={12} className="flex justify-center">
             <Button

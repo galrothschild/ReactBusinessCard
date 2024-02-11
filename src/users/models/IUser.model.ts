@@ -38,7 +38,27 @@ export interface SignupResponse {
   email: string;
   _id: string;
 }
-export interface loginInfo {
+
+export interface signupData {
+  "first name": string;
+  "middle name": string;
+  "last name": string;
+  phone: string;
+  email: string;
+  password: string;
+  "password confirmation": string;
+  "image url": string;
+  "image alt": string;
+  state: string;
+  country: string;
+  city: string;
+  street: string;
+  houseNumber: string;
+  zip: string;
+  isBusiness: boolean;
+}
+
+export interface loginData {
   email: string;
   password: string;
 }

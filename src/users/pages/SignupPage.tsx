@@ -6,14 +6,14 @@ import { RootState } from "../../redux/store";
 import loginSchema from "../models/loginSchema";
 import { setLogin, setLoginErrors } from "../../redux/forms/formDataSlice";
 
-const LoginPage = () => {
+const SignupPage = () => {
   const { handleLogin } = useUser();
   const initialForm = useSelector(
-    (state: RootState) => state.formData.loginData
+    (state: RootState) => state.formData.signupData
   );
   const formActions = useForm(
     initialForm,
-    "login",
+    "signup",
     loginSchema,
     handleLogin,
     setLogin,
@@ -21,12 +21,29 @@ const LoginPage = () => {
   );
   return (
     <Form
-      colNum={1}
-      inputs={["email", "password"]}
-      title="Log In"
+      colNum={2}
+      inputs={[
+        "first name",
+        "middle name",
+        "last name",
+        "phone",
+        "email",
+        "password",
+        "password confirmation",
+        "image url",
+        "image alt",
+        "state",
+        "country",
+        "city",
+        "street",
+        "houseNumber",
+        "zip",
+        "isBusiness",
+      ]}
+      title="Sign Up"
       formActions={formActions}
     />
   );
 };
 
-export default LoginPage;
+export default SignupPage;

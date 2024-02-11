@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import AboutPage from "../pages/AboutPage";
 import CardDetailPage from "../cards/pages/CardDetailPage";
 import LoginPage from "../users/pages/LoginPage";
+import SignupPage from "../users/pages/SignupPage";
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
       <Route path={`${ROUTES.CARD_DETAILS}/:id`} element={<CardDetailPage />} />
       <Route path="404" element={<ErrorPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path="*" element={<Navigate replace to={"404"} />} />
     </Routes>
   );

@@ -1,4 +1,4 @@
-import { loginInfo } from "./../users/models/IUser.model";
+import { loginData } from "./../users/models/IUser.model";
 import axios from "axios";
 import { ICard } from "../cards/models/CardModel";
 import { IUser, SignupResponse } from "../users/models/IUser.model";
@@ -27,7 +27,7 @@ export const getFromAPI = async (
 type responseType = string | SignupResponse | ICard;
 export const postToAPI = async (
   api: "users/login" | "users" | "cards",
-  data: loginInfo | IUser | ICard,
+  data: loginData | IUser | ICard,
   token?: "string"
 ) => {
   if (token) axios.defaults.headers.common["x-auth-token"] = token;

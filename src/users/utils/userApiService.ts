@@ -1,7 +1,7 @@
 import { postToAPI } from "../../utlis/apiService";
-import { loginInfo } from "../models/IUser.model";
+import { loginData } from "../models/IUser.model";
 
-export const login = async (user: loginInfo) => {
+export const login = async (user: loginData) => {
   try {
     const res = await postToAPI("users/login", user);
     console.log(res);

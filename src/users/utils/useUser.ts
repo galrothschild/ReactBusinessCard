@@ -10,7 +10,6 @@ import {
   setUser,
 } from "../../redux/user/userSlice";
 import { IUser } from "../models/IUser.model";
-import { setLogin } from "../../redux/forms/formDataSlice";
 
 export const useUser = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,15 +28,9 @@ export const useUser = () => {
       navigate("/cards");
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    if (!(name === "email" || name === "password")) return;
-    dispatch(setLogin({ name, value }));
-  };
 
   const handleLogout = () => {
-    console.log("Logged out!");
     dispatch(logout());
   };
-  return { handleLogin, handleChange, handleLogout };
+  return { handleLogin, handleLogout };
 };
