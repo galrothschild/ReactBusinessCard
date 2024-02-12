@@ -3,8 +3,8 @@ import Form from "../../forms/components/Form";
 import { useForm } from "../../forms/hooks/useForm";
 import { useUser } from "../utils/useUser";
 import { RootState } from "../../redux/store";
-import loginSchema from "../models/loginSchema";
-import { setLogin, setLoginErrors } from "../../redux/forms/formDataSlice";
+import { setSignup, setSignupErrors } from "../../redux/forms/formDataSlice";
+import signupSchema from "../models/signupSchema";
 
 const SignupPage = () => {
   const { handleLogin } = useUser();
@@ -14,10 +14,10 @@ const SignupPage = () => {
   const formActions = useForm(
     initialForm,
     "signup",
-    loginSchema,
+    signupSchema,
     handleLogin,
-    setLogin,
-    setLoginErrors
+    setSignup,
+    setSignupErrors
   );
   return (
     <Form
@@ -28,17 +28,17 @@ const SignupPage = () => {
         "last name",
         "phone",
         "email",
-        "password",
-        "password confirmation",
         "image url",
         "image alt",
         "state",
         "country",
         "city",
         "street",
-        "houseNumber",
+        "house number",
         "zip",
-        "isBusiness",
+        "business account(Bool)",
+        "password(Pass)",
+        "password confirmation(Pass)",
       ]}
       title="Sign Up"
       formActions={formActions}

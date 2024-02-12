@@ -30,6 +30,7 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
           alignContent="center"
           wrap="wrap"
           mt={2}
+          gap={2}
         >
           <FormInputs
             inputs={inputs}

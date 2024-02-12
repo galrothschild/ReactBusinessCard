@@ -53,9 +53,9 @@ export interface signupData {
   country: string;
   city: string;
   street: string;
-  houseNumber: string;
+  "house number": string;
   zip: string;
-  isBusiness: boolean;
+  "business account": boolean;
 }
 
 export interface loginData {

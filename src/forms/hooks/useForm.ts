@@ -3,12 +3,12 @@ import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { loginData } from "../../users/models/IUser.model";
-import Joi from "joi";
+import Joi, { Reference } from "joi";
 
 export const useForm = (
   initialForm: loginData,
   formName: "login" | "signup",
-  schema: Record<string, Joi.Schema>,
+  schema: Record<string, Joi.Schema | Reference>,
   handleSubmit: Function,
   setData: ActionCreatorWithPayload<any>,
   setError: ActionCreatorWithPayload<any>

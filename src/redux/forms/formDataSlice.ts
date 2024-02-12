@@ -23,9 +23,9 @@ const initialSignup: signupData = {
   country: "",
   city: "",
   street: "",
-  houseNumber: "",
+  "house number": "",
   zip: "",
-  isBusiness: false,
+  "business account": false,
 };
 const initialState: formsState = {
   loginData: initialLogin,
@@ -52,8 +52,22 @@ const formDataSlice = createSlice({
       const { name, value } = action.payload;
       state.loginErrors[name] = value;
     },
+    setSignup: (
+      state,
+      action: PayloadAction<{ name: keyof loginData; value: string }>
+    ) => {
+      const { name, value } = action.payload;
+      state.loginData[name] = value;
+    },
+    setSignupErrors: (
+      state,
+      action: PayloadAction<{ name: keyof loginData; value: string }>
+    ) => {
+      const { name, value } = action.payload;
+      state.loginErrors[name] = value;
+    },
   },
 });
 
-export const { setLogin, setLoginErrors } = formDataSlice.actions;
+export const { setLogin, setLoginErrors, setSignup, setSignupErrors } = formDataSlice.actions;
 export default formDataSlice.reducer;
