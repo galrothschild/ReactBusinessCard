@@ -3,12 +3,12 @@ import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { loginData } from "../../users/models/IUser.model";
-import Joi, { Reference } from "joi";
+import Joi, { ObjectSchema, Reference } from "joi";
 
 export const useForm = (
   initialForm: loginData,
   formName: "login" | "signup",
-  schema: Record<string, Joi.Schema | Reference>,
+  schema: ObjectSchema,
   handleSubmit: Function,
   setData: ActionCreatorWithPayload<any>,
   setError: ActionCreatorWithPayload<any>
@@ -27,17 +27,22 @@ export const useForm = (
   type propertyType = {
     name: string;
     value: string;
+    password?: string;
   };
   const validateProperty = useCallback(
     ({ name, value }: propertyType) => {
       const obj = { [name]: value };
       const propertySchema = Joi.object({
-        [name]: schema[name as keyof typeof schema],
+        [name]: schema.extract(name),
       });
+
       const { error } = propertySchema.validate(obj);
+      if (name === "password confirmation") {
+        if (value === data["password"]) return null;
+      }
       return error ? error.details[0].message : null;
     },
-    [schema]
+    [schema, data]
   );
 
   const onSubmit = useCallback(() => {
@@ -51,7 +56,6 @@ export const useForm = (
       if (!Object.keys(initialForm).includes(name))
         throw new Error("Soemthing went wrong...");
       const errorMessage = validateProperty({ name, value });
-      console.log(name, errorMessage);
       dispatch(setError({ name, value: errorMessage }));
       dispatch(setData({ name, value }));
     },

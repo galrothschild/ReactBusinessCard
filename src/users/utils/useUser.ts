@@ -32,5 +32,7 @@ export const useUser = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
-  return { handleLogin, handleLogout };
+
+  const handleSignup = () => {};
+  return { handleLogin, handleLogout, handleSignup };
 };

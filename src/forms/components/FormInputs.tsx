@@ -1,4 +1,10 @@
-import { Box, Checkbox, FormControl, FormControlLabel, Grid } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  Grid,
+} from "@mui/material";
 import { capitalizeTitle } from "../utils/utils";
 import { styled } from "@mui/material/styles";
 import MuiTextField from "@mui/material/TextField";
@@ -31,7 +37,13 @@ export default function FormInputs({
       {inputs && colNum === 2 && (
         <>
           <Grid item md={5} xs={12}>
-            <Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 2,
+                flexDirection: "column",
+              }}
+            >
               {inputs
                 .slice(0, Math.ceil(inputs.length / 2))
                 .map((input, index) =>
@@ -40,7 +52,13 @@ export default function FormInputs({
             </Box>
           </Grid>
           <Grid item md={5} xs={12}>
-            <Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 2,
+                flexDirection: "column",
+              }}
+            >
               {inputs
                 .slice(Math.ceil(inputs.length / 2), inputs.length)
                 .map((input, index) =>
@@ -64,13 +82,22 @@ const Input = (
   if (input.includes("(Pass)")) {
     inputType = "password";
   }
-  if (input.includes("Bool")) inputType = "checkbox"
+  if (input.includes("Bool")) inputType = "checkbox";
   if (input.indexOf("(") !== -1) input = input.substring(0, input.indexOf("("));
   return (
-    <Grid item xs={12} className="flex" sx={{ justifyContent: { xs: "center", md: justify } }} key={index}>
+    <Grid
+      item
+      xs={12}
+      className="flex"
+      sx={{ justifyContent: { xs: "center", md: justify } }}
+      key={index}
+    >
       <FormControl sx={{ minWidth: 250 }}>
         {inputType === "checkbox" ? (
-          <FormControlLabel required control={<Checkbox />} label={capitalizeTitle(input)} />
+          <FormControlLabel
+            control={<Checkbox />}
+            label={capitalizeTitle(input)}
+          />
         ) : (
           <TextField
             type={inputType}

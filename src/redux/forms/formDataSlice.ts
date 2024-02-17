@@ -57,17 +57,18 @@ const formDataSlice = createSlice({
       action: PayloadAction<{ name: keyof loginData; value: string }>
     ) => {
       const { name, value } = action.payload;
-      state.loginData[name] = value;
+      state.signupData[name] = value;
     },
     setSignupErrors: (
       state,
       action: PayloadAction<{ name: keyof loginData; value: string }>
     ) => {
       const { name, value } = action.payload;
-      state.loginErrors[name] = value;
+      state.signupErrors[name] = value;
     },
   },
 });
 
-export const { setLogin, setLoginErrors, setSignup, setSignupErrors } = formDataSlice.actions;
+export const { setLogin, setLoginErrors, setSignup, setSignupErrors } =
+  formDataSlice.actions;
 export default formDataSlice.reducer;

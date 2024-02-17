@@ -26,7 +26,7 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
           spacing={1}
           direction="row"
           justifyContent="center"
-          alignItems="center"
+          alignItems="start"
           alignContent="center"
           wrap="wrap"
           mt={2}

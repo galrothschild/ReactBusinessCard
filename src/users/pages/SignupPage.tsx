@@ -7,7 +7,7 @@ import { setSignup, setSignupErrors } from "../../redux/forms/formDataSlice";
 import signupSchema from "../models/signupSchema";
 
 const SignupPage = () => {
-  const { handleLogin } = useUser();
+  const { handleSignup } = useUser();
   const initialForm = useSelector(
     (state: RootState) => state.formData.signupData
   );
@@ -15,7 +15,7 @@ const SignupPage = () => {
     initialForm,
     "signup",
     signupSchema,
-    handleLogin,
+    handleSignup,
     setSignup,
     setSignupErrors
   );
@@ -36,9 +36,9 @@ const SignupPage = () => {
         "street",
         "house number",
         "zip",
-        "business account(Bool)",
         "password(Pass)",
         "password confirmation(Pass)",
+        "business account(Bool)",
       ]}
       title="Sign Up"
       formActions={formActions}
