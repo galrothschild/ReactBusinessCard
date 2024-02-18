@@ -3,7 +3,8 @@ import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { loginData } from "../../users/models/IUser.model";
-import Joi, { ObjectSchema, Reference } from "joi";
+import Joi, { ObjectSchema } from "joi";
+import { setFormError } from "../../redux/forms/formDataSlice";
 
 export const useForm = (
   initialForm: loginData,
@@ -19,6 +20,8 @@ export const useForm = (
   const errors = useSelector(
     (state: RootState) => state.formData[`${formName}Errors`]
   );
+  let formError = useSelector((state: RootState) => state.formData.formError);
+  setFormError("");
   const dispatch = useDispatch();
   const handleReset = useCallback(() => {
     dispatch(setData(initialForm));
@@ -45,13 +48,13 @@ export const useForm = (
     [schema, data]
   );
 
-  const onSubmit = useCallback(() => {
-    handleSubmit(data);
-  }, [data, handleSubmit]);
+  const onSubmit = useCallback(async () => {
+    const error = await handleSubmit(data);
+    dispatch(setFormError(error));
+  }, [data, handleSubmit, dispatch]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(errors);
       const { name, value } = e.target;
       if (!Object.keys(initialForm).includes(name))
         throw new Error("Soemthing went wrong...");
@@ -59,7 +62,14 @@ export const useForm = (
       dispatch(setError({ name, value: errorMessage }));
       dispatch(setData({ name, value }));
     },
-    [dispatch, setData, initialForm, validateProperty, setError, errors]
+    [dispatch, setData, initialForm, validateProperty, setError]
   );
-  return { handleReset, validateProperty, onSubmit, handleChange, errors };
+  return {
+    handleReset,
+    validateProperty,
+    onSubmit,
+    handleChange,
+    errors,
+    formError,
+  };
 };

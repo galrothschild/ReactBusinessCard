@@ -6,6 +6,7 @@ interface formsState {
   loginErrors: loginData;
   signupData: signupData;
   signupErrors: signupData;
+  formError: string;
 }
 
 const initialLogin = { email: "", password: "" };
@@ -32,12 +33,16 @@ const initialState: formsState = {
   loginErrors: initialLogin,
   signupData: initialSignup,
   signupErrors: initialSignup,
+  formError: "",
 };
 
 const formDataSlice = createSlice({
   name: "formData",
   initialState,
   reducers: {
+    setFormError: (state, action: PayloadAction<string>) => {
+      state.formError = action.payload;
+    },
     setLogin: (
       state,
       action: PayloadAction<{ name: keyof loginData; value: string }>
@@ -69,6 +74,11 @@ const formDataSlice = createSlice({
   },
 });
 
-export const { setLogin, setLoginErrors, setSignup, setSignupErrors } =
-  formDataSlice.actions;
+export const {
+  setLogin,
+  setLoginErrors,
+  setSignup,
+  setSignupErrors,
+  setFormError,
+} = formDataSlice.actions;
 export default formDataSlice.reducer;

@@ -16,9 +16,8 @@ export const useUser = () => {
   const navigate = useNavigate();
   const data = useSelector((state: RootState) => state.formData.loginData);
   const handleLogin = async () => {
-    console.log(data);
     const token = await login(data);
-    console.log(token);
+    if (!token) return "Incorrect Username or password";
     if (typeof token === "string") {
       setTokenInLocalStorage(token);
       dispatch(setToken(token));
@@ -27,6 +26,7 @@ export const useUser = () => {
       dispatch(setLogged(true));
       navigate("/cards");
     }
+    return Promise.resolve();
   };
 
   const handleLogout = () => {

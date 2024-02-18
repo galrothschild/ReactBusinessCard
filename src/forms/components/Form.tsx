@@ -8,16 +8,18 @@ interface FormProps {
 }
 
 const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
-  const { onSubmit, handleChange, errors } = formActions;
+  const { onSubmit, handleChange, errors, formError } = formActions;
   return (
     <Container className="flex flex-col items-center text-center">
       <Typography variant="h2" fontSize={32}>
         {title}
       </Typography>
+      <Typography variant="h3" color="error">
+        {formError}
+      </Typography>
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          console.log(event);
           onSubmit();
         }}
       >
