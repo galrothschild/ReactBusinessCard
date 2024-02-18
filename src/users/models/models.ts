@@ -58,7 +58,7 @@ export interface signupData {
   "business account": boolean;
 }
 
-type OmitID<T> = Omit<T, '_id'>;
+type OmitID<T> = Omit<T, "_id">;
 
 export interface signupNormalizedData {
   name: OmitID<Name>;
@@ -67,7 +67,7 @@ export interface signupNormalizedData {
   password: string;
   image: OmitID<Image>;
   address: OmitID<Address>;
-  isBuisness: boolean
+  isBusiness: boolean;
 }
 
 export interface loginData {

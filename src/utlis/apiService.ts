@@ -51,3 +51,25 @@ export const postToAPI = async (
     }
   }
 };
+
+export const patchtoAPI = async (
+  api: "cards" | "users",
+  id: string,
+  token?: string,
+  body?: { bizNumber: number }
+) => {
+  if (token) axios.defaults.headers.common["x-auth-token"] = token;
+  let response;
+  try {
+    !!body
+      ? (response = await instance.patch(`${ApiURL}/${api}/${id}`, body))
+      : (response = await instance.patch(`${ApiURL}/${api}/${id}`));
+    return response;
+  } catch (error) {
+    if (error instanceof Error) {
+      return Promise.reject(error.message);
+    } else {
+      return Promise.reject(`Unidentified Error: ${error}`);
+    }
+  }
+};

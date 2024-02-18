@@ -79,10 +79,11 @@ const Input = (
   justify: string
 ) => {
   let inputType = "text";
-  if (input.includes("(Pass)")) {
+  if (input.includes("Pass")) {
     inputType = "password";
   }
   if (input.includes("Bool")) inputType = "checkbox";
+  const required = input.includes("*");
   if (input.indexOf("(") !== -1) input = input.substring(0, input.indexOf("("));
   return (
     <Grid
@@ -97,9 +98,11 @@ const Input = (
           <FormControlLabel
             control={<Checkbox />}
             label={capitalizeTitle(input)}
+            required={required}
           />
         ) : (
           <TextField
+            required={required}
             type={inputType}
             id={input}
             name={input}

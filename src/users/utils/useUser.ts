@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
-import { login, signup } from './userApiService';
+import { login, signup } from "./userApiService";
 import { getUser, setTokenInLocalStorage } from "./localStorageService";
 import {
   logout,
@@ -9,19 +9,20 @@ import {
   setToken,
   setUser,
 } from "../../redux/user/userSlice";
-import { IUser, signupData } from '../models/models';
+import { IUser, signupData } from "../models/models";
 import normalizeUser from "./normalizeUser";
+import { setLogin } from "../../redux/forms/formDataSlice";
 
 export const useUser = (useCase: "signup" | "login") => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   switch (useCase) {
-    case "signup":
-      {
-
-      }
+    case "signup": {
+    }
   }
-  const data = useSelector((state: RootState) => state.formData[`${useCase}Data`]);
+  const data = useSelector(
+    (state: RootState) => state.formData[`${useCase}Data`]
+  );
   const handleLogin = async () => {
     const token = await login(data);
     if (!token) return "Incorrect username or password";
@@ -41,8 +42,13 @@ export const useUser = (useCase: "signup" | "login") => {
   };
 
   const handleSignup = async () => {
-
-    const normalizedUser = normalizeUser(data as signupData)
+    console.log(data);
+    const normalizedUser = normalizeUser(data as signupData);
+    console.log(normalizedUser);
+    const user = await signup(normalizedUser);
+    if (!user) return "Something went wrong...";
+    dispatch(setLogin({ name: "email", value: normalizedUser.email }));
+    navigate("/login");
   };
   return { handleLogin, handleLogout, handleSignup };
 };

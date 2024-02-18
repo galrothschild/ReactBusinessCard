@@ -50,11 +50,9 @@ export const useForm = (
 
   const onSubmit = useCallback(() => {
     handleSubmit(data).then((error: string | null) => {
-      console.log(error)
-      if (error)
-        dispatch(setFormError(error));
-    })
-
+      console.log(error);
+      if (error) dispatch(setFormError(error));
+    });
   }, [data, handleSubmit, dispatch]);
 
   const handleChange = useCallback(
@@ -67,12 +65,11 @@ export const useForm = (
       dispatch(setData({ name, value }));
     },
     [dispatch, setData, initialForm, validateProperty, setError]
-
   );
   // Resetting form error
   useEffect(() => {
-    dispatch(setFormError(""))
-  }, [])
+    dispatch(setFormError(""));
+  });
   return {
     handleReset,
     validateProperty,

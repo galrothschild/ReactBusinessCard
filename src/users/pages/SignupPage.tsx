@@ -23,21 +23,21 @@ const SignupPage = () => {
     <Form
       colNum={2}
       inputs={[
-        "first name",
+        "first name(*)",
         "middle name",
-        "last name",
-        "phone",
-        "email",
+        "last name(*)",
+        "phone(*)",
+        "email(*)",
         "image url",
         "image alt",
         "state",
-        "country",
-        "city",
-        "street",
-        "house number",
-        "zip",
-        "password(Pass)",
-        "password confirmation(Pass)",
+        "country(*)",
+        "city(*)",
+        "street(*)",
+        "house number(*)",
+        "zip(*)",
+        "password(Pass*)",
+        "password confirmation(Pass*)",
         "business account(Bool)",
       ]}
       title="Sign Up"
