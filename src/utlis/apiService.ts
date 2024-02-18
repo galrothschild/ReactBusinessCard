@@ -1,7 +1,7 @@
-import { loginData } from "./../users/models/IUser.model";
+import { loginData } from "../users/models/models";
 import axios from "axios";
 import { ICard } from "../cards/models/CardModel";
-import { IUser, SignupResponse } from "../users/models/IUser.model";
+import { IUser, SignupResponse } from "../users/models/models";
 import { AxiosResponse } from "axios";
 
 const ApiURL: string = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2";
@@ -45,7 +45,7 @@ export const postToAPI = async (
     return response;
   } catch (error) {
     if (error instanceof Error) {
-      return error.message;
+      return Promise.reject(error.message);
     } else {
       return Promise.reject(`Unidentified Error: ${error}`);
     }

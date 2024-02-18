@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { loginData, signupData } from "../../users/models/IUser.model";
+import { loginData, signupData } from "../../users/models/models";
 
 interface formsState {
   loginData: loginData;

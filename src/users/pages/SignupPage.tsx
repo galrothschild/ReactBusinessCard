@@ -7,7 +7,7 @@ import { setSignup, setSignupErrors } from "../../redux/forms/formDataSlice";
 import signupSchema from "../models/signupSchema";
 
 const SignupPage = () => {
-  const { handleSignup } = useUser();
+  const { handleSignup } = useUser("signup");
   const initialForm = useSelector(
     (state: RootState) => state.formData.signupData
   );

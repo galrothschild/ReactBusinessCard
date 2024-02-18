@@ -1,8 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { loginData } from "../../users/models/IUser.model";
+import { loginData } from "../../users/models/models";
 import Joi, { ObjectSchema } from "joi";
 import { setFormError } from "../../redux/forms/formDataSlice";
 
@@ -48,9 +48,13 @@ export const useForm = (
     [schema, data]
   );
 
-  const onSubmit = useCallback(async () => {
-    const error = await handleSubmit(data);
-    dispatch(setFormError(error));
+  const onSubmit = useCallback(() => {
+    handleSubmit(data).then((error: string | null) => {
+      console.log(error)
+      if (error)
+        dispatch(setFormError(error));
+    })
+
   }, [data, handleSubmit, dispatch]);
 
   const handleChange = useCallback(
@@ -63,7 +67,12 @@ export const useForm = (
       dispatch(setData({ name, value }));
     },
     [dispatch, setData, initialForm, validateProperty, setError]
+
   );
+  // Resetting form error
+  useEffect(() => {
+    dispatch(setFormError(""))
+  }, [])
   return {
     handleReset,
     validateProperty,

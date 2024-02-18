@@ -21,7 +21,7 @@ const MenuBar = () => {
   };
   const user = useSelector((state: RootState) => state.user.isLoggedIn);
   const style = { display: "flex", flexDirection: "column" };
-  const { handleLogout } = useUser();
+  const { handleLogout } = useUser("login");
   return (
     <>
       <IconButton

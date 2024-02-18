@@ -58,6 +58,18 @@ export interface signupData {
   "business account": boolean;
 }
 
+type OmitID<T> = Omit<T, '_id'>;
+
+export interface signupNormalizedData {
+  name: OmitID<Name>;
+  phone: string;
+  email: string;
+  password: string;
+  image: OmitID<Image>;
+  address: OmitID<Address>;
+  isBuisness: boolean
+}
+
 export interface loginData {
   email: string;
   password: string;

@@ -14,7 +14,7 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
       <Typography variant="h2" fontSize={32}>
         {title}
       </Typography>
-      <Typography variant="h3" color="error">
+      <Typography variant="h5" color="error">
         {formError}
       </Typography>
       <form

@@ -7,7 +7,7 @@ import loginSchema from "../models/loginSchema";
 import { setLogin, setLoginErrors } from "../../redux/forms/formDataSlice";
 
 const LoginPage = () => {
-  const { handleLogin } = useUser();
+  const { handleLogin } = useUser("login");
   const initialForm = useSelector(
     (state: RootState) => state.formData.loginData
   );
