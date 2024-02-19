@@ -2,18 +2,21 @@ import React from 'react';
 import { ICard } from '../../models/CardModel';
 import { Box, CardActions, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import ROUTES from '../../../routes/helpers/ROUTES';
 import { Delete, Edit, Favorite, } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
+import useCardActions from '../../utils/useCardActions';
 
 
 interface Props {
     card: ICard;
+    isLiked: boolean;
 }
-const CardActionBar: React.FC<Props> = ({ card }) => {
-    const handleLike = () => console.log("Liked card ", card._id);
-    const handleDelete = () => console.log("Deleted card ", card._id);
-    const navigate = useNavigate();
-    const handleEdit = () => navigate(`${ROUTES.EDIT_CARD}/${card._id}`);
+const CardActionBar: React.FC<Props> = ({ card, isLiked }) => {
+    const token = useSelector((state: RootState) => state.user.token)
+    const { handleLike, handleDelete, handleEdit } = useCardActions(card)
+
+    const likedColor = isLiked ? "error" : "inherit"
     return (
         <>
             <CardActions disableSpacing >
@@ -21,8 +24,8 @@ const CardActionBar: React.FC<Props> = ({ card }) => {
                     <IconButton onClick={handleDelete}>
                         <Delete />
                     </IconButton>
-                    <IconButton onClick={handleLike}>
-                        <Favorite />
+                    <IconButton onClick={() => handleLike(token)}>
+                        <Favorite color={likedColor} />
                     </IconButton>
                     <IconButton onClick={handleEdit}>
                         <Edit />

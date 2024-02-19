@@ -11,7 +11,6 @@ interface Props {
 }
 
 const MappedCards: React.FC<Props> = ({ cards, isPending }) => {
-  const userID = useSelector((state: RootState) => state.user.user._id);
   if (isPending)
     return (
       <Box width="100%" sx={{ display: "grid", placeItems: "center", pt: 3 }}>
@@ -31,7 +30,7 @@ const MappedCards: React.FC<Props> = ({ cards, isPending }) => {
             key={`${index}-card`}
             sx={{ placeItems: "center", display: "grid" }}
           >
-            <CardComponent card={card} isLiked={card.likes.includes(userID)} />
+            <CardComponent card={card} />
           </Grid>
         ))}
       </Grid>

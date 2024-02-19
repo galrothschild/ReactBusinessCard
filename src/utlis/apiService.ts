@@ -58,7 +58,7 @@ export const patchtoAPI = async (
   token?: string,
   body?: { bizNumber: number }
 ) => {
-  if (token) axios.defaults.headers.common["x-auth-token"] = token;
+  if (token) instance.defaults.headers.common["x-auth-token"] = token;
   let response;
   try {
     !!body

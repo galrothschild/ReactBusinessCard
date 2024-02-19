@@ -10,7 +10,7 @@ const CardDetailPage = () => {
   const cards = useSelector((state: RootState) => state.cards.cards);
   const currentCard = cards.find((card) => card._id === id) || false;
   return currentCard ? (
-    <CardComponent card={currentCard} isLiked={true} />
+    <CardComponent card={currentCard} />
   ) : (
     <ErrorPage />
   );

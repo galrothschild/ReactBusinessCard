@@ -6,13 +6,15 @@ import CardActionBar from "./CardActionBar";
 import { ICard } from "../../models/CardModel";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/helpers/ROUTES";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 interface Props {
   card: ICard;
-  isLiked: boolean;
 }
 
-const CardComponent: React.FC<Props> = ({ card, isLiked }) => {
+const CardComponent: React.FC<Props> = ({ card }) => {
   const navigate = useNavigate();
+  const userID = useSelector((state: RootState) => state.user.user._id);
   return (
     <Card
       sx={{ maxWidth: 280, width: 280 }}
@@ -24,7 +26,7 @@ const CardComponent: React.FC<Props> = ({ card, isLiked }) => {
         <CardHeader image={card.image} />
         <CardBody card={card} />
       </CardActionArea>
-      <CardActionBar card={card} />
+      <CardActionBar card={card} isLiked={card.likes.includes(userID)} />
     </Card>
   );
 };
