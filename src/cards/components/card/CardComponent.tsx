@@ -1,5 +1,5 @@
 import { CardActionArea, Card } from "@mui/material";
-import React from "react";
+import React, { memo } from "react";
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
 import CardActionBar from "./CardActionBar";
@@ -31,4 +31,4 @@ const CardComponent: React.FC<Props> = ({ card }) => {
   );
 };
 
-export default CardComponent;
+export default memo(CardComponent);

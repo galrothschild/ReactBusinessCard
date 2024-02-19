@@ -8,6 +8,7 @@ import {
 import { capitalizeTitle } from "../utils/utils";
 import { styled } from "@mui/material/styles";
 import MuiTextField from "@mui/material/TextField";
+import { memo } from "react";
 
 const TextField = styled(MuiTextField)({
   "& .MuiFormHelperText-root": {
@@ -21,12 +22,12 @@ interface forminputsType {
   errors: Record<string, string>;
 }
 
-export default function FormInputs({
+const FormInputs = ({
   inputs,
   colNum,
   onInputChange,
   errors,
-}: forminputsType) {
+}: forminputsType) => {
   return (
     <>
       {inputs &&
@@ -70,7 +71,7 @@ export default function FormInputs({
       )}
     </>
   );
-}
+};
 const Input = (
   input: string,
   onInputChange: Function,
@@ -122,3 +123,5 @@ const Input = (
     </Grid>
   );
 };
+
+export default memo(FormInputs);

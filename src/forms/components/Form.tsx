@@ -1,5 +1,6 @@
 import { Container, Typography, Button, Grid } from "@mui/material";
 import FormInputs from "./FormInputs";
+import { memo } from "react";
 interface FormProps {
   title: string;
   inputs: string[];
@@ -56,4 +57,4 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
   );
 };
 
-export default Form;
+export default memo(Form);

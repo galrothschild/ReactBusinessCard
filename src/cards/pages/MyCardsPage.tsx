@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import useCards from "../utils/useCards";
 import MappedCards from "../components/card/MappedCards";
 import filterCards from "../utils/filterCards";
@@ -21,4 +21,4 @@ const MyCardsPage = () => {
   );
 };
 
-export default MyCardsPage;
+export default memo(MyCardsPage);

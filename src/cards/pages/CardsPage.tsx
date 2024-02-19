@@ -2,6 +2,7 @@ import MappedCards from "../components/card/MappedCards";
 import PageHeader from "../../pages/components/PageHeader";
 
 import useCards from "../utils/useCards";
+import { memo } from "react";
 
 const CardsPage = () => {
   const { cards, isPending } = useCards();
@@ -13,4 +14,4 @@ const CardsPage = () => {
   );
 };
 
-export default CardsPage;
+export default memo(CardsPage);
