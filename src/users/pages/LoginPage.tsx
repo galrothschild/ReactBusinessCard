@@ -5,6 +5,7 @@ import { useUser } from "../utils/useUser";
 import { RootState } from "../../redux/store";
 import loginSchema from "../models/loginSchema";
 import { setLogin, setLoginErrors } from "../../redux/forms/formDataSlice";
+import { memo } from "react";
 
 const LoginPage = () => {
   const { handleLogin } = useUser("login");
@@ -29,4 +30,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default memo(LoginPage);

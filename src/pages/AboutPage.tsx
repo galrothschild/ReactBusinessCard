@@ -1,5 +1,6 @@
 import { Container, Grid, Typography } from '@mui/material';
 import PageHeader from './components/PageHeader';
+import { memo } from 'react';
 
 const AboutPage = () => {
     return (
@@ -23,4 +24,4 @@ const AboutPage = () => {
     );
 };
 
-export default AboutPage;
+export default memo(AboutPage);

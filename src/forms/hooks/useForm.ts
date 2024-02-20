@@ -77,5 +77,6 @@ export const useForm = (
     handleChange,
     errors,
     formError,
+    data
   };
 };

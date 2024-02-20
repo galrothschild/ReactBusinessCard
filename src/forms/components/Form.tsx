@@ -9,7 +9,7 @@ interface FormProps {
 }
 
 const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
-  const { onSubmit, handleChange, errors, formError } = formActions;
+  const { onSubmit, handleChange, errors, formError, data } = formActions;
   return (
     <Container className="flex flex-col items-center text-center">
       <Typography variant="h2" fontSize={32}>
@@ -40,6 +40,7 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
             colNum={colNum}
             onInputChange={handleChange}
             errors={errors}
+            data={data}
           />
           <Grid item xs={12} className="flex justify-center">
             <Button

@@ -40,18 +40,18 @@ const signupSchema = Joi.object({
   "image url": Joi.string().uri(),
   "image alt": Joi.string(),
   state: Joi.string()
-    .regex(/^[a-zA-Z]+$/)
+    .regex(/^[a-zA-Z ']+$/)
     .rule({ message: "Must only include English letters" }),
   country: Joi.string()
-    .regex(/^[a-zA-Z]+$/)
+    .regex(/^[a-zA-Z ']+$/)
     .rule({ message: "Must only include English letters" })
     .required(),
   city: Joi.string()
-    .regex(/^[a-zA-Z]+$/)
+    .regex(/^[a-zA-Z ']+$/)
     .rule({ message: "Must only include English letters" })
     .required(),
   street: Joi.string()
-    .regex(/^[a-zA-Z]+$/)
+    .regex(/^[a-zA-Z ']+$/)
     .rule({ message: "Must only include English letters" })
     .required(),
   "house number": Joi.string()

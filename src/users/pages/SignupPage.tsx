@@ -5,6 +5,7 @@ import { useUser } from "../utils/useUser";
 import { RootState } from "../../redux/store";
 import { setSignup, setSignupErrors } from "../../redux/forms/formDataSlice";
 import signupSchema from "../models/signupSchema";
+import { memo } from "react";
 
 const SignupPage = () => {
   const { handleSignup } = useUser("signup");
@@ -46,4 +47,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default memo(SignupPage);

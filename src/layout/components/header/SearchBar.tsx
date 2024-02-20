@@ -2,6 +2,7 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { memo } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -45,7 +46,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SearchBar() {
+const SearchBar = () => {
     return (
         <Box sx={{ marginLeft: "auto", mr: "5%" }}>
             <Search>
@@ -60,3 +61,4 @@ export default function SearchBar() {
         </Box>
     );
 }
+export default memo(SearchBar)

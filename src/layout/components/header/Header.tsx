@@ -2,6 +2,7 @@ import Nav from './Nav';
 import { Box, useTheme } from '@mui/material';
 import SearchBar from './SearchBar';
 import MenuBar from './MenuBar';
+import { memo } from 'react';
 
 const Header = () => {
     const theme = useTheme();
@@ -14,4 +15,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default memo(Header);

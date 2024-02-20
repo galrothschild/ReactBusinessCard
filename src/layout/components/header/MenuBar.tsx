@@ -1,6 +1,6 @@
 import { Box, Menu } from "@mui/material";
 import { IconButton } from "@mui/material";
-import React from "react";
+import React, { memo } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import NavCustomLink from "../../../routes/helpers/NavCustomLink";
 import ROUTES from "../../../routes/helpers/ROUTES";
@@ -67,4 +67,4 @@ const MenuBar = () => {
   );
 };
 
-export default MenuBar;
+export default memo(MenuBar);

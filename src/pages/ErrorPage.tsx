@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import PageHeader from "./components/PageHeader";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/helpers/ROUTES";
+import { memo } from "react";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
@@ -36,4 +37,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default memo(ErrorPage);

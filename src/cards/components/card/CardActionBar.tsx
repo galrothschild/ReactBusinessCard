@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { ICard } from "../../models/CardModel";
 import { Box, CardActions, IconButton } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { Delete, Edit, Favorite } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
@@ -25,7 +24,6 @@ const CardActionBar: React.FC<Props> = ({ card, isLiked }) => {
           </IconButton>
           <IconButton
             onClick={() => {
-              isLiked = !isLiked;
               handleLike(token);
             }}
           >

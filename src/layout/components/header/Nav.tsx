@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import CustomLink from "../../../routes/helpers/CustomLink";
 import Logo from "./Logo";
 import ROUTES from "../../../routes/helpers/ROUTES";
@@ -17,4 +17,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default memo(Nav);

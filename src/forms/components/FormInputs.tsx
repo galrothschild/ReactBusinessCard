@@ -9,6 +9,7 @@ import { capitalizeTitle } from "../utils/utils";
 import { styled } from "@mui/material/styles";
 import MuiTextField from "@mui/material/TextField";
 import { memo } from "react";
+import { formDataType } from '../models/formDataTypes';
 
 const TextField = styled(MuiTextField)({
   "& .MuiFormHelperText-root": {
@@ -20,6 +21,7 @@ interface forminputsType {
   colNum: number;
   onInputChange: Function;
   errors: Record<string, string>;
+  data: formDataType;
 }
 
 const FormInputs = ({
@@ -27,13 +29,14 @@ const FormInputs = ({
   colNum,
   onInputChange,
   errors,
+  data
 }: forminputsType) => {
   return (
     <>
       {inputs &&
         colNum === 1 &&
         inputs.map((input, index) =>
-          Input(input, onInputChange, errors, index, "center")
+          Input(input, onInputChange, errors, index, "center", data)
         )}
       {inputs && colNum === 2 && (
         <>
@@ -48,7 +51,7 @@ const FormInputs = ({
               {inputs
                 .slice(0, Math.ceil(inputs.length / 2))
                 .map((input, index) =>
-                  Input(input, onInputChange, errors, index, "flex-end")
+                  Input(input, onInputChange, errors, index, "flex-end", data)
                 )}
             </Box>
           </Grid>
@@ -63,7 +66,7 @@ const FormInputs = ({
               {inputs
                 .slice(Math.ceil(inputs.length / 2), inputs.length)
                 .map((input, index) =>
-                  Input(input, onInputChange, errors, index, "flex-start")
+                  Input(input, onInputChange, errors, index, "flex-start", data)
                 )}
             </Box>
           </Grid>
@@ -77,15 +80,18 @@ const Input = (
   onInputChange: Function,
   errors: Record<string, string>,
   index: number,
-  justify: string
+  justify: string,
+  data: formDataType
 ) => {
   let inputType = "text";
+  let inputName: keyof formDataType = input as keyof formDataType;
   if (input.includes("Pass")) {
     inputType = "password";
   }
   if (input.includes("Bool")) inputType = "checkbox";
   const required = input.includes("*");
-  if (input.indexOf("(") !== -1) input = input.substring(0, input.indexOf("("));
+  if (input.indexOf("(") !== -1) inputName = input.substring(0, input.indexOf("(")) as keyof typeof data;
+  const value = data?.[inputName];
   return (
     <Grid
       item
@@ -98,24 +104,25 @@ const Input = (
         {inputType === "checkbox" ? (
           <FormControlLabel
             control={<Checkbox />}
-            label={capitalizeTitle(input)}
+            label={capitalizeTitle(inputName)}
             required={required}
           />
         ) : (
           <TextField
+            value={value}
             required={required}
             type={inputType}
-            id={input}
-            name={input}
-            label={capitalizeTitle(input)}
+            id={inputName}
+            name={inputName}
+            label={capitalizeTitle(inputName)}
             onChange={
               onInputChange as React.ChangeEventHandler<
                 HTMLInputElement | HTMLTextAreaElement
               >
             }
-            error={Boolean(errors[input])}
+            error={Boolean(errors[inputName])}
             autoComplete="off"
-            helperText={errors[input]}
+            helperText={errors[inputName]}
             fullWidth
           />
         )}
