@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { loginData, signupData } from "../../users/models/models";
-
+import { initialLogin, initialSignup } from "./initialForms";
 interface formsState {
   loginData: loginData;
   loginErrors: loginData;
@@ -8,26 +8,6 @@ interface formsState {
   signupErrors: signupData;
   formError: string;
 }
-
-const initialLogin = { email: "", password: "" };
-const initialSignup: signupData = {
-  "first name": "",
-  "middle name": "",
-  "last name": "",
-  phone: "",
-  email: "",
-  password: "",
-  "password confirmation": "",
-  "image url": "",
-  "image alt": "",
-  state: "",
-  country: "",
-  city: "",
-  street: "",
-  "house number": "",
-  zip: "",
-  "business account": false,
-};
 const initialState: formsState = {
   loginData: initialLogin,
   loginErrors: initialLogin,
@@ -35,7 +15,6 @@ const initialState: formsState = {
   signupErrors: initialSignup,
   formError: "",
 };
-
 const formDataSlice = createSlice({
   name: "formData",
   initialState,
