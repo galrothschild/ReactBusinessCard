@@ -23,6 +23,9 @@ const useCardActions = (card: ICard) => {
   );
   const handleDelete = () => console.log("Deleted card ", card._id);
   const handleEdit = () => navigate(`${ROUTES.EDIT_CARD}/${card._id}`);
+  const handleCreateCard = useCallback(() => {
+
+  }, [])
   return { handleLike, handleDelete, handleEdit };
 };
 export default useCardActions;

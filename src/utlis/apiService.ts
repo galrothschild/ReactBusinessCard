@@ -3,6 +3,7 @@ import axios from "axios";
 import { ICard } from "../cards/models/CardModel";
 import { IUser, SignupResponse } from "../users/models/models";
 import { AxiosResponse } from "axios";
+import { formDataType } from "../forms/models/formDataTypes";
 
 const ApiURL: string = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2";
 
@@ -33,8 +34,8 @@ export const getFromAPI = async (
 type responseType = string | SignupResponse | ICard;
 export const postToAPI = async (
   api: "users/login" | "users" | "cards",
-  data: loginData | IUser | ICard,
-  token?: "string"
+  data: formDataType,
+  token?: string
 ) => {
   if (token) axios.defaults.headers.common["x-auth-token"] = token;
   try {
