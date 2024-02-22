@@ -21,7 +21,7 @@ export const getFromAPI = async (
   if (token) axios.defaults.headers.common["x-auth-token"] = token;
   const ID = id || "";
   try {
-    const response = await instance.get(`${ApiURL}/${api}/${ID}`);
+    const response: AxiosResponse<ICard | IUser | ICard[] | IUser[]> = await instance.get(`${ApiURL}/${api}/${ID}`);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {

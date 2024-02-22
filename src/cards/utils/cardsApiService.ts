@@ -1,9 +1,16 @@
+import { AxiosResponse } from "axios";
 import { getFromAPI, patchtoAPI, postToAPI } from "../../utlis/apiService";
-import { createCardData } from "../models/CreateCardModels";
-export const getCards = () => {
-  return getFromAPI("cards");
+import { createCardData, createCardNormalizedData } from "../models/CreateCardModels";
+import { ICard } from '../models/CardModel';
+import { IUser } from "../../users/models/models";
+export const getCards = async () => {
+  const cards = (await getFromAPI("cards")) as ICard[];
+  return cards
 };
-export const getCardByID = (id: string) => getFromAPI("cards", id);
+export const getCardByID = async (id: string) => {
+  const card = (await getFromAPI("cards")) as ICard;
+  return card
+};
 
 export const getMyCards = () => getFromAPI("cards", "my-cards");
 
@@ -12,6 +19,12 @@ export const likeCard = async (cardID: string, token: string) => {
   patchtoAPI("cards", cardID, token);
 };
 
-export const createCard = (data: createCardData, token: string) => {
-  postToAPI("cards", data, token)
+export const createCard = async (data: createCardNormalizedData, token: string) => {
+  try {
+    const res = await postToAPI("cards", data, token) as AxiosResponse<ICard | IUser>;
+    if (typeof res === "string") return false;
+    return res?.data
+  } catch (error) {
+    return false;
+  }
 };

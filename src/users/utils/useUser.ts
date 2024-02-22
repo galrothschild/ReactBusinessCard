@@ -43,9 +43,7 @@ export const useUser = (useCase: "signup" | "login") => {
   };
 
   const handleSignup = async () => {
-    console.log(data);
     const normalizedUser = normalizeUser(data as signupData);
-    console.log(normalizedUser);
     const user = await signup(normalizedUser);
     if (!user) return "Something went wrong...";
     dispatch(setLogin({ name: "email", value: normalizedUser.email }));
