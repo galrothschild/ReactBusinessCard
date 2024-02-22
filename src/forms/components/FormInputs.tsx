@@ -8,8 +8,8 @@ import {
 import { capitalizeTitle } from "../utils/utils";
 import { styled } from "@mui/material/styles";
 import MuiTextField from "@mui/material/TextField";
-import { memo } from "react";
-import { formDataType } from '../models/formDataTypes';
+import React, { memo } from "react";
+import { formDataType } from "../models/formDataTypes";
 
 const TextField = styled(MuiTextField)({
   "& .MuiFormHelperText-root": {
@@ -29,7 +29,7 @@ const FormInputs = ({
   colNum,
   onInputChange,
   errors,
-  data
+  data,
 }: forminputsType) => {
   return (
     <>
@@ -90,7 +90,8 @@ const Input = (
   }
   if (input.includes("Bool")) inputType = "checkbox";
   const required = input.includes("*");
-  if (input.indexOf("(") !== -1) inputName = input.substring(0, input.indexOf("(")) as keyof typeof data;
+  if (input.indexOf("(") !== -1)
+    inputName = input.substring(0, input.indexOf("(")) as keyof typeof data;
   const value = data?.[inputName];
   return (
     <Grid
@@ -102,10 +103,14 @@ const Input = (
     >
       <FormControl sx={{ minWidth: 250 }}>
         {inputType === "checkbox" ? (
+          // TODO: Fix checkbox
           <FormControlLabel
             control={<Checkbox />}
             label={capitalizeTitle(inputName)}
             required={required}
+            onClick={onInputChange as React.MouseEventHandler<HTMLLabelElement>}
+            id={inputName}
+            name={inputName}
           />
         ) : (
           <TextField

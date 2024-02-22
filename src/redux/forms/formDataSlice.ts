@@ -1,11 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { loginData, signupData } from "../../users/models/models";
-import { initialLogin, initialSignup } from "./initialForms";
+import { initialCreateCard, initialLogin, initialSignup } from "./initialForms";
+import { createCardData } from "../../cards/models/CreateCardModels";
 interface formsState {
   loginData: loginData;
   loginErrors: loginData;
   signupData: signupData;
   signupErrors: signupData;
+  createCardData: createCardData;
+  createCardErrors: createCardData;
   formError: string;
 }
 const initialState: formsState = {
@@ -13,6 +16,8 @@ const initialState: formsState = {
   loginErrors: initialLogin,
   signupData: initialSignup,
   signupErrors: initialSignup,
+  createCardData: initialCreateCard,
+  createCardErrors: initialCreateCard,
   formError: "",
 };
 const formDataSlice = createSlice({
@@ -38,17 +43,31 @@ const formDataSlice = createSlice({
     },
     setSignup: (
       state,
-      action: PayloadAction<{ name: keyof loginData; value: string }>
+      action: PayloadAction<{ name: keyof signupData; value: string }>
     ) => {
       const { name, value } = action.payload;
       state.signupData[name] = value;
     },
     setSignupErrors: (
       state,
-      action: PayloadAction<{ name: keyof loginData; value: string }>
+      action: PayloadAction<{ name: keyof signupData; value: string }>
     ) => {
       const { name, value } = action.payload;
       state.signupErrors[name] = value;
+    },
+    setCreateCard: (
+      state,
+      action: PayloadAction<{ name: keyof createCardData; value: string }>
+    ) => {
+      const { name, value } = action.payload;
+      state.createCardData[name] = value;
+    },
+    setCreateCardErrors: (
+      state,
+      action: PayloadAction<{ name: keyof createCardData; value: string }>
+    ) => {
+      const { name, value } = action.payload;
+      state.createCardErrors[name] = value;
     },
   },
 });

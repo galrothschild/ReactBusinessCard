@@ -55,7 +55,7 @@ export interface signupData {
   street: string;
   "house number": string;
   zip: string;
-  "business account": boolean;
+  "business account": boolean | string;
 }
 
 type OmitID<T> = Omit<T, "_id">;

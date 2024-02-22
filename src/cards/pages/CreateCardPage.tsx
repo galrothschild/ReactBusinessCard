@@ -23,24 +23,21 @@ const CreateCardPage = () => {
     <Form
       colNum={2}
       inputs={[
-        "first name(*)",
-        "middle name",
-        "last name(*)",
+        "title(*)",
+        "subtitle(*)",
+        "description(*)",
         "phone(*)",
-        "email(*)",
-        "image url",
-        "image alt",
+        "website(*)",
         "state",
         "country(*)",
         "city(*)",
         "street(*)",
         "house number(*)",
-        "zip(*)",
-        "password(Pass*)",
-        "password confirmation(Pass*)",
-        "business account(Bool)",
+        "zip",
+        "image address(*)",
+        "image description(*)",
       ]}
-      title="Sign Up"
+      title="Create a card"
       formActions={formActions}
     />
   );

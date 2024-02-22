@@ -1,4 +1,11 @@
-import { createCardData } from "../../cards/models/CreateCardModels";
+import {
+  createCardData,
+  createCardNormalizedData,
+} from "../../cards/models/CreateCardModels";
 import { loginData, signupData } from "../../users/models/models";
 
-export type formDataType = signupData | loginData | createCardData
+export type formDataType =
+  | signupData
+  | loginData
+  | createCardData
+  | createCardNormalizedData;

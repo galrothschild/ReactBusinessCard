@@ -22,7 +22,7 @@ export default function normalizeUser(user: signupData): signupNormalizedData {
       houseNumber: +user["house number"],
       zip: +user.zip,
     },
-    isBusiness: user["business account"],
+    isBusiness: Boolean(user["business account"]),
   };
   return normalizedUser;
 }

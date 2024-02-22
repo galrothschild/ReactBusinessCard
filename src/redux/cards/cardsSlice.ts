@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ICard } from '../../cards/models/CardModel';
+import { ICard } from "../../cards/models/CardModel";
 
 interface cardsState {
   cards: ICard[];
@@ -16,7 +16,7 @@ const cardsSlice = createSlice({
       state.cards = action.payload;
     },
     addCard: (state, action: PayloadAction<ICard>) => {
-      state.cards = [...state.cards, action.payload]
+      state.cards = [...state.cards, action.payload];
     },
     setPending: (state, action: PayloadAction<boolean>) => {
       state.isPending = action.payload;
@@ -41,5 +41,6 @@ const cardsSlice = createSlice({
   },
 });
 
-export const { setCards, setPending, setLikeCard } = cardsSlice.actions;
+export const { setCards, setPending, setLikeCard, addCard } =
+  cardsSlice.actions;
 export default cardsSlice.reducer;

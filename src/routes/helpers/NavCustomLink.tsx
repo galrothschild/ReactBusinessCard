@@ -10,11 +10,11 @@ interface Props {
 
 const NavCustomLink: React.FC<Props> = ({ label, to, action }) => {
   return (
-    <Link to={to} className="hover:brightness-90 hover:bg-gray-300 w-full">
+    <Link to={to} className="hover:brightness-90 w-full">
       <Button
         variant="text"
         color="primary"
-        sx={{ textTransform: "none" }}
+        sx={{ textTransform: "none", width: "100%" }}
         onClick={action && (() => action())}
       >
         {label}

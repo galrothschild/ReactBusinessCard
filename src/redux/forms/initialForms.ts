@@ -1,3 +1,4 @@
+import { createCardData } from "../../cards/models/CreateCardModels";
 import { loginData, signupData } from "../../users/models/models";
 
 export const initialLogin: loginData = { email: "", password: "" };
@@ -18,4 +19,19 @@ export const initialSignup: signupData = {
   "house number": "",
   zip: "",
   "business account": false,
+};
+export const initialCreateCard: createCardData = {
+  title: "",
+  subtitle: "",
+  description: "",
+  phone: "",
+  website: "",
+  state: "",
+  country: "",
+  city: "",
+  street: "",
+  "house number": "",
+  zip: "",
+  "image address": "",
+  "image description": "",
 };

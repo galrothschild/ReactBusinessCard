@@ -57,7 +57,7 @@ export const useForm = (
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
+      console.log(name, value);
       if (!Object.keys(initialForm).includes(name))
         throw new Error("Soemthing went wrong...");
       const errorMessage = validateProperty({ name, value });
@@ -77,6 +77,6 @@ export const useForm = (
     handleChange,
     errors,
     formError,
-    data
+    data,
   };
 };

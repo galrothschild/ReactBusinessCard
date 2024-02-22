@@ -2,8 +2,6 @@ import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { memo } from "react";
 import { ICard } from "../../models/CardModel";
 import CardComponent from "./CardComponent";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 
 interface Props {
   cards: ICard[];

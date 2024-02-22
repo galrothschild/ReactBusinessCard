@@ -1,4 +1,4 @@
-import { CardActionArea, Card } from "@mui/material";
+import { CardActionArea, Card, useTheme } from "@mui/material";
 import React, { memo } from "react";
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
@@ -14,11 +14,18 @@ interface Props {
 
 const CardComponent: React.FC<Props> = ({ card }) => {
   const navigate = useNavigate();
+  const {
+    palette: { mode: themeMode },
+  } = useTheme();
   const userID = useSelector((state: RootState) => state.user.user._id);
   return (
     <Card
       sx={{ maxWidth: 280, width: 280 }}
-      className="shadow-md border border-slate-400"
+      className={
+        "shadow-md border" + themeMode === "dark"
+          ? "border-slate-700"
+          : "border-slate-400"
+      }
     >
       <CardActionArea
         onClick={() => navigate(`${ROUTES.CARD_DETAILS}/${card._id}`)}

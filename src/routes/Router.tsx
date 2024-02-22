@@ -10,11 +10,25 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import MyCardsPage from "../cards/pages/MyCardsPage";
 import FavCardsPage from "../cards/pages/FavCardsPage";
+import CreateCardPage from "../cards/pages/CreateCardPage";
 
 const Router = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const {
+    isLoggedIn,
+    user: { isAdmin },
+  } = useSelector((state: RootState) => state.user);
   return (
     <Routes>
+      <Route
+        path={ROUTES.CREATE_CARD}
+        element={
+          isLoggedIn ? (
+            <CreateCardPage />
+          ) : (
+            <Navigate replace to={ROUTES.ROOT} />
+          )
+        }
+      />
       <Route
         path={ROUTES.ROOT}
         element={
