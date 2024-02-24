@@ -1,3 +1,1 @@
-export const handleCardDelete = (id: string) => {
-    console.log(`Card ${id} was deleted`);
-};
+export const handleCardDelete = (id: string) => {};

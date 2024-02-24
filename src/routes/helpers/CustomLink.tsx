@@ -15,13 +15,13 @@ const CustomLink: React.FC<LinkProps> = ({ to, children, ...props }) => {
     useMatch({ path: resolvedPath.pathname, end: true })?.pathname === to;
   const style = {
     color: themeMode === "dark" ? "#fff" : "#121212",
-    border: `1px solid ${"dark" ? "#454545" : theme.palette.primary.main}`,
-    backgroundColor: themeMode === "dark" ? "#121212" : "#03a9f4",
+    // border: `1px solid ${themeMode === "dark" ? "#454545" : theme.palette.primary.main}`,
+    backgroundColor: themeMode === "dark" ? "#121212" : "51a7f2",
   };
   if (isActive) {
-    style.border = `1px solid ${"dark" ? "#121212" : "#03a9f4"}`;
+    // style.border = `1px solid ${themeMode === "dark" ? "#121212" : "#03a9f4"}`;
     style.backgroundColor =
-      themeMode === "dark" ? "#454545" : theme.palette.primary.light;
+      themeMode === "dark" ? "#454545" : "#e5e5e5";
   }
   return (
     <Link

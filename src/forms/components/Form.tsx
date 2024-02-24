@@ -1,15 +1,16 @@
 import { Container, Typography, Button, Grid } from "@mui/material";
 import FormInputs from "./FormInputs";
 import { memo } from "react";
+import { useForm } from "../hooks/useForm";
 interface FormProps {
   title: string;
   inputs: string[];
   colNum: number;
-  formActions: any;
+  formActions: ReturnType<typeof useForm>;
 }
 
 const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
-  const { onSubmit, handleChange, errors, formError, data } = formActions;
+  const { onSubmit, handleInputChange,handleCheckboxChange, errors, formError, data } = formActions;
   return (
     <Container className="flex flex-col items-center text-center">
       <Typography variant="h2" fontSize={32}>
@@ -38,7 +39,8 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
           <FormInputs
             inputs={inputs}
             colNum={colNum}
-            onInputChange={handleChange}
+            onInputChange={handleInputChange}
+            onCheckboxChange={handleCheckboxChange}
             errors={errors}
             data={data}
           />

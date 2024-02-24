@@ -18,7 +18,7 @@ export const initialSignup: signupData = {
   street: "",
   "house number": "",
   zip: "",
-  "business account": false,
+  "business account": true,
 };
 export const initialCreateCard: createCardData = {
   title: "",

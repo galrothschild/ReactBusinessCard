@@ -14,7 +14,6 @@ const MenuBar = () => {
   );
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-    console.log(anchorElNav);
   };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);

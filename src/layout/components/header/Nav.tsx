@@ -6,14 +6,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 
 const Nav = () => {
-  const { isAdmin, isBusiness } = useSelector((state: RootState) => state.user.user)
+  const {user:  {isAdmin, isBusiness}, isLoggedIn } = useSelector((state: RootState) => state.user)
   return (
     <div className="flex gap-3">
       <Logo />
       <div className="flex items-center">
         <CustomLink to={ROUTES.ABOUT}>About</CustomLink>
-        <CustomLink to={ROUTES.FAV_CARDS}>Fav Cards</CustomLink>
-        <CustomLink to={ROUTES.MY_CARDS}>My Cards</CustomLink>
+        {isLoggedIn && (<CustomLink to={ROUTES.FAV_CARDS}>Fav Cards</CustomLink>)}
+        {isLoggedIn && isBusiness && (<CustomLink to={ROUTES.MY_CARDS}>My Cards</CustomLink>)}
         {isAdmin && (<CustomLink to={ROUTES.CRM}>CRM</CustomLink>)}
       </div>
     </div>

@@ -6,7 +6,7 @@ import {
   Grid,
 } from "@mui/material";
 import { capitalizeTitle } from "../utils/utils";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import MuiTextField from "@mui/material/TextField";
 import React, { memo } from "react";
 import { formDataType } from "../models/formDataTypes";
@@ -19,8 +19,9 @@ const TextField = styled(MuiTextField)({
 interface forminputsType {
   inputs: string[];
   colNum: number;
-  onInputChange: Function;
-  errors: Record<string, string>;
+  onInputChange: (currentTarget: HTMLInputElement) => void;
+  onCheckboxChange: (currentTarget: HTMLSpanElement) => void;
+  errors: formDataType;
   data: formDataType;
 }
 
@@ -28,6 +29,7 @@ const FormInputs = ({
   inputs,
   colNum,
   onInputChange,
+  onCheckboxChange,
   errors,
   data,
 }: forminputsType) => {
@@ -36,7 +38,7 @@ const FormInputs = ({
       {inputs &&
         colNum === 1 &&
         inputs.map((input, index) =>
-          Input(input, onInputChange, errors, index, "center", data)
+          Input(input, onInputChange,onCheckboxChange,  errors, index, "center", data)
         )}
       {inputs && colNum === 2 && (
         <>
@@ -51,7 +53,7 @@ const FormInputs = ({
               {inputs
                 .slice(0, Math.ceil(inputs.length / 2))
                 .map((input, index) =>
-                  Input(input, onInputChange, errors, index, "flex-end", data)
+                  Input(input, onInputChange,onCheckboxChange, errors, index, "flex-end", data)
                 )}
             </Box>
           </Grid>
@@ -66,7 +68,7 @@ const FormInputs = ({
               {inputs
                 .slice(Math.ceil(inputs.length / 2), inputs.length)
                 .map((input, index) =>
-                  Input(input, onInputChange, errors, index, "flex-start", data)
+                  Input(input, onInputChange,onCheckboxChange, errors, index, "flex-start", data)
                 )}
             </Box>
           </Grid>
@@ -77,12 +79,14 @@ const FormInputs = ({
 };
 const Input = (
   input: string,
-  onInputChange: Function,
-  errors: Record<string, string>,
+  onInputChange: (currentTarget: HTMLInputElement) => void,
+  onCheckboxChange: (currentTarget: HTMLSpanElement) => void,
+  errors: formDataType,
   index: number,
   justify: string,
   data: formDataType
 ) => {
+  const {palette: {mode: themeMode}} = useTheme()
   let inputType = "text";
   let inputName: keyof formDataType = input as keyof formDataType;
   if (input.includes("Pass")) {
@@ -105,12 +109,15 @@ const Input = (
         {inputType === "checkbox" ? (
           // TODO: Fix checkbox
           <FormControlLabel
-            control={<Checkbox />}
-            label={capitalizeTitle(inputName)}
-            required={required}
-            onClick={onInputChange as React.MouseEventHandler<HTMLLabelElement>}
+            control={<Checkbox 
+              onClick={(e) =>onCheckboxChange(e.currentTarget)}
             id={inputName}
             name={inputName}
+              checked = {value}
+               />}
+            label={capitalizeTitle(inputName)}
+            required={required}
+            style={{color: themeMode === "dark"? "#fff": "#121212"}}
           />
         ) : (
           <TextField
@@ -120,10 +127,8 @@ const Input = (
             id={inputName}
             name={inputName}
             label={capitalizeTitle(inputName)}
-            onChange={
-              onInputChange as React.ChangeEventHandler<
-                HTMLInputElement | HTMLTextAreaElement
-              >
+            onChange={(e) =>
+              onInputChange(e.currentTarget as HTMLInputElement)
             }
             error={Boolean(errors[inputName])}
             autoComplete="off"
