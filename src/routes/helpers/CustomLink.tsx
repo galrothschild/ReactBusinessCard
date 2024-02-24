@@ -16,7 +16,7 @@ const CustomLink: React.FC<LinkProps> = ({ to, children, ...props }) => {
   const style = {
     color: themeMode === "dark" ? "#fff" : "#121212",
     // border: `1px solid ${themeMode === "dark" ? "#454545" : theme.palette.primary.main}`,
-    backgroundColor: themeMode === "dark" ? "#121212" : "51a7f2",
+    backgroundColor: themeMode === "dark" ? "#121212" : "#51a7f2",
   };
   if (isActive) {
     // style.border = `1px solid ${themeMode === "dark" ? "#121212" : "#03a9f4"}`;

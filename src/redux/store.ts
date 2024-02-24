@@ -9,20 +9,24 @@ import persistStore from "redux-persist/es/persistStore";
 import themeReducer from "./theme/themeSlice";
 
 const userPersistConfig = {
-  key: "user",
-  storage,
-  blacklist: ["cards", "formData"],
+	key: "user",
+	storage,
+	blacklist: ["cards", "formData"],
 };
 
 const persistUserReducer = persistReducer(userPersistConfig, userReducer);
 
 export const store = configureStore({
-  reducer: {
-    cards: cardsReducer,
-    user: persistUserReducer,
-    formData: formDataReducer,
-    theme: themeReducer,
-  },
+	reducer: {
+		cards: cardsReducer,
+		user: persistUserReducer,
+		formData: formDataReducer,
+		theme: themeReducer,
+	},
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
 });
 
 export const persistor = persistStore(store);
