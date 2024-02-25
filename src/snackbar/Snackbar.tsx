@@ -13,7 +13,7 @@ const SnackbarComponent = () => {
 			anchorOrigin={{ vertical: "top", horizontal: "right" }}
 			open={isOpen}
 			color={snackColor}
-			sx={{ height: "20%" }}
+			sx={{ height: "20%", zIndex: 2 }}
 		>
 			<Alert variant="filled" severity={snackColor}>
 				{snackMessage}
