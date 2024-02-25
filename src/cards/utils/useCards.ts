@@ -11,7 +11,6 @@ const useCards = () => {
 	const cards = useSelector((state: RootState) => state.cards.cards);
 	const isPending = useSelector((state: RootState) => state.cards.isPending);
 	let error: unknown;
-	let allCards: ICard[];
 	const fetchCardsIfEmpty = async (cards: ICard[]) => {
 		if (!cards.length) {
 			try {
