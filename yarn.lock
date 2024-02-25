@@ -1158,6 +1158,25 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@biomejs/biome@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.npmjs.org/@biomejs/biome/-/biome-1.5.3.tgz"
+  integrity sha512-yvZCa/g3akwTaAQ7PCwPWDCkZs3Qa5ONg/fgOUT9e6wAWsPftCjLQFPXBeGxPK30yZSSpgEmRCfpGTmVbUjGgg==
+  optionalDependencies:
+    "@biomejs/cli-darwin-arm64" "1.5.3"
+    "@biomejs/cli-darwin-x64" "1.5.3"
+    "@biomejs/cli-linux-arm64" "1.5.3"
+    "@biomejs/cli-linux-arm64-musl" "1.5.3"
+    "@biomejs/cli-linux-x64" "1.5.3"
+    "@biomejs/cli-linux-x64-musl" "1.5.3"
+    "@biomejs/cli-win32-arm64" "1.5.3"
+    "@biomejs/cli-win32-x64" "1.5.3"
+
+"@biomejs/cli-win32-x64@1.5.3":
+  version "1.5.3"
+  resolved "https://registry.npmjs.org/@biomejs/cli-win32-x64/-/cli-win32-x64-1.5.3.tgz"
+  integrity sha512-fMvbSouZEASU7mZH8SIJSANDm5OqsjgtVXlbUqxwed6BP7uuHRSs396Aqwh2+VoW8fwTpp6ybIUoC9FrzB0kyA==
+
 "@csstools/normalize.css@*":
   version "12.1.1"
   resolved "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-12.1.1.tgz"

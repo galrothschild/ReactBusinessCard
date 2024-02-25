@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
     "@types/redux-persist": "^4.3.1",
     "react-window": "^1.8.10",
     "redux-persist": "^6.0.0",
