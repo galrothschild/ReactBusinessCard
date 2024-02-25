@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
 import {
 	createCardData,
 	createCardNormalizedData,
 } from "../models/CreateCardModels";
+import { ICard } from "../models/CardModel";
 
 export const normalizeCard = (card: createCardData) => {
 	const normalizedCard: createCardNormalizedData = {
@@ -26,4 +26,24 @@ export const normalizeCard = (card: createCardData) => {
 		},
 	};
 	return normalizedCard;
+};
+
+export const denormalizeCard = (normalizedCard: ICard): createCardData => {
+	const denormalizedCard: createCardData = {
+		title: normalizedCard.title,
+		subtitle: normalizedCard.subtitle,
+		description: normalizedCard.description,
+		phone: normalizedCard.phone,
+		email: normalizedCard.email,
+		website: normalizedCard.web || "", // Corrected property name
+		"image address": normalizedCard.image.url,
+		"image description": normalizedCard.image.alt,
+		state: normalizedCard.address.state,
+		country: normalizedCard.address.country,
+		city: normalizedCard.address.city,
+		street: normalizedCard.address.street,
+		"house number": normalizedCard.address.houseNumber.toString(),
+		zip: normalizedCard.address.zip.toString(),
+	};
+	return denormalizedCard;
 };

@@ -21,8 +21,9 @@ export const useForm = (
 		(state: RootState) => state.formData[`${formName}Errors`],
 	);
 	const formError = useSelector((state: RootState) => state.formData.formError);
-	setFormError("");
 	const dispatch = useDispatch();
+	dispatch(setFormError(""));
+	console.log(initialForm);
 	const handleReset = useCallback(() => {
 		dispatch(setData(initialForm));
 		dispatch(setError({}));
