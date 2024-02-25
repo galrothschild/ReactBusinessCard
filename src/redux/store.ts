@@ -7,23 +7,27 @@ import userReducer from "./user/userSlice";
 import formDataReducer from "./forms/formDataSlice";
 import persistStore from "redux-persist/es/persistStore";
 import themeReducer from "./theme/themeSlice";
-import SnackbarReducer from "./snackbar/SnackbarSlice";
+import snackbarReducer from "./snackbar/SnackbarSlice";
 
 const userPersistConfig = {
 	key: "user",
 	storage,
-	blacklist: ["cards", "formData"],
+};
+const themePersistConfig = {
+	key: "theme",
+	storage,
 };
 
 const persistUserReducer = persistReducer(userPersistConfig, userReducer);
+const persistThemeReducer = persistReducer(themePersistConfig, themeReducer);
 
 export const store = configureStore({
 	reducer: {
 		cards: cardsReducer,
 		user: persistUserReducer,
 		formData: formDataReducer,
-		theme: themeReducer,
-		snack: SnackbarReducer,
+		theme: persistThemeReducer,
+		snack: snackbarReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
