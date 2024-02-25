@@ -4,13 +4,13 @@ import {
 	createCardNormalizedData,
 } from "../models/CreateCardModels";
 
-export const normalizeCard = (card: createCardData, email: string) => {
+export const normalizeCard = (card: createCardData) => {
 	const normalizedCard: createCardNormalizedData = {
 		title: card.title,
 		subtitle: card.subtitle,
 		description: card.description,
 		phone: card.phone,
-		email,
+		email: card.email,
 		web: card.website,
 		image: {
 			url: card["image address"],

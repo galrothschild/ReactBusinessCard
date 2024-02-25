@@ -17,6 +17,7 @@ export interface createCardData {
 	subtitle: string;
 	description: string;
 	phone: string;
+	email: string;
 	website: string;
 	state: string;
 	country: string;
@@ -69,4 +70,8 @@ export const createCardSchema = Joi.object({
 		.required(),
 	"image address": Joi.string().uri().required(),
 	"image description": Joi.string().required(),
+	email: Joi.string()
+		.required()
+		.regex(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/)
+		.rule({ message: "Must be a valid email address" }),
 });

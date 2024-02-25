@@ -7,6 +7,7 @@ import userReducer from "./user/userSlice";
 import formDataReducer from "./forms/formDataSlice";
 import persistStore from "redux-persist/es/persistStore";
 import themeReducer from "./theme/themeSlice";
+import SnackbarReducer from "./snackbar/SnackbarSlice";
 
 const userPersistConfig = {
 	key: "user",
@@ -22,6 +23,7 @@ export const store = configureStore({
 		user: persistUserReducer,
 		formData: formDataReducer,
 		theme: themeReducer,
+		snack: SnackbarReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

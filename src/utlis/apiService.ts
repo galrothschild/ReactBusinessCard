@@ -42,6 +42,7 @@ export const postToAPI = async (
 			`${ApiURL}/${api}`,
 			data,
 		);
+
 		return response;
 	} catch (error) {
 		if (error instanceof Error) {
