@@ -1,8 +1,9 @@
-import { Container, Typography, Button, Grid } from "@mui/material";
+import { Container, Typography, Button, Grid, IconButton } from "@mui/material";
 import FormInputs from "./FormInputs";
 import { memo } from "react";
 import { useForm } from "../hooks/useForm";
 import { RestartAlt } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 interface FormProps {
 	title: string;
 	inputs: string[];
@@ -20,6 +21,7 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
 		data,
 		handleReset,
 	} = formActions;
+	const navigate = useNavigate();
 	return (
 		<Container className="flex flex-col items-center text-center">
 			<Typography variant="h2" fontSize={32}>
@@ -53,7 +55,7 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
 						errors={errors}
 						data={data}
 					/>
-					<Grid item xs={12} className="flex justify-center">
+					<Grid item xs={12} className="flex justify-center space-x-3">
 						<Button
 							color="primary"
 							variant="contained"
@@ -62,13 +64,18 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
 						>
 							Submit
 						</Button>
-						<Button
-							color="info"
-							variant="contained"
-							sx={{ px: 3, fontSize: 20, textTransform: "none" }}
-							onClick={() => handleReset()}
-						>
+						<IconButton onClick={() => handleReset()} color="primary">
 							<RestartAlt />
+						</IconButton>
+					</Grid>
+					<Grid item xs={12} className="flex justify-center space-x-3">
+						<Button
+							color="error"
+							variant="outlined"
+							sx={{ px: 3, fontSize: 20, textTransform: "none" }}
+							onClick={() => navigate(-1)}
+						>
+							Cancel
 						</Button>
 					</Grid>
 				</Grid>

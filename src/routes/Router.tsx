@@ -40,12 +40,7 @@ const Router = () => {
 					)
 				}
 			/>
-			<Route
-				path={ROUTES.ROOT}
-				element={
-					isLoggedIn ? <CardsPage /> : <Navigate replace to={ROUTES.LOGIN} />
-				}
-			/>
+			<Route path={ROUTES.ROOT} element={<CardsPage />} />
 			<Route
 				path={ROUTES.CARDS}
 				element={

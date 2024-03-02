@@ -3,7 +3,7 @@ import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Joi, { ObjectSchema } from "joi";
-import { setFormError } from "../../redux/forms/formDataSlice";
+import { resetForm, setFormError } from "../../redux/forms/formDataSlice";
 import { formDataType } from "../models/formDataTypes";
 
 export const useForm = (
@@ -23,11 +23,9 @@ export const useForm = (
 	const formError = useSelector((state: RootState) => state.formData.formError);
 	const dispatch = useDispatch();
 	dispatch(setFormError(""));
-	console.log(initialForm);
 	const handleReset = useCallback(() => {
-		dispatch(setData(initialForm));
-		dispatch(setError({}));
-	}, [initialForm, dispatch, setData, setError]);
+		dispatch(resetForm(formName));
+	}, [formName, dispatch]);
 	type propertyType = {
 		name: string;
 		value: string;
