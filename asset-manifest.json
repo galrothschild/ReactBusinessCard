@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactBusinessCard/static/css/main.bf3fe80f.css",
-    "main.js": "/ReactBusinessCard/static/js/main.843629c8.js",
+    "main.css": "/ReactBusinessCard/static/css/main.d0f50633.css",
+    "main.js": "/ReactBusinessCard/static/js/main.2ae38617.js",
     "static/js/592.4ea93eb1.chunk.js": "/ReactBusinessCard/static/js/592.4ea93eb1.chunk.js",
     "index.html": "/ReactBusinessCard/index.html",
-    "main.bf3fe80f.css.map": "/ReactBusinessCard/static/css/main.bf3fe80f.css.map",
-    "main.843629c8.js.map": "/ReactBusinessCard/static/js/main.843629c8.js.map",
+    "main.d0f50633.css.map": "/ReactBusinessCard/static/css/main.d0f50633.css.map",
+    "main.2ae38617.js.map": "/ReactBusinessCard/static/js/main.2ae38617.js.map",
     "592.4ea93eb1.chunk.js.map": "/ReactBusinessCard/static/js/592.4ea93eb1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bf3fe80f.css",
-    "static/js/main.843629c8.js"
+    "static/css/main.d0f50633.css",
+    "static/js/main.2ae38617.js"
   ]
 }
