@@ -5,21 +5,34 @@ import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 
 function App() {
-  const isDark = useSelector((state: RootState) => state.theme.isDark);
-  const darkTheme = createTheme({
-    palette: {
-      mode: isDark ? "dark" : "light",
-    },
-  });
-  return (
-    <div className="App">
-      <ThemeProvider theme={darkTheme}>
-        <Layout>
-          <Router />
-        </Layout>
-      </ThemeProvider>
-    </div>
-  );
+	const isDark = useSelector((state: RootState) => state.theme.isDark);
+	const defaultTheme = createTheme({
+		palette: {
+			mode: isDark ? "dark" : "light",
+		},
+		components: {
+			MuiGrid: {
+				styleOverrides: {
+					root: {
+						"&.MuiGrid-root": {
+							"@media (max-width:281px)": {
+								paddingLeft: "2px",
+							},
+						},
+					},
+				},
+			},
+		},
+	});
+	return (
+		<div className="App">
+			<ThemeProvider theme={defaultTheme}>
+				<Layout>
+					<Router />
+				</Layout>
+			</ThemeProvider>
+		</div>
+	);
 }
 
 export default App;

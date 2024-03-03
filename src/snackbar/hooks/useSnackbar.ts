@@ -13,6 +13,9 @@ const useSnackbar = () => {
 			dispatch(closeSnack());
 		}, delay);
 	};
-	return { envokeSnackbar };
+	const somethingWentWrong = () =>
+		envokeSnackbar("Something went wrong...", "error", 3000);
+
+	return { envokeSnackbar, somethingWentWrong };
 };
 export default useSnackbar;

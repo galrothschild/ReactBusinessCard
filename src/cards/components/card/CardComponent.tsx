@@ -20,7 +20,7 @@ const CardComponent: React.FC<Props> = ({ card }) => {
 	const userID = useSelector((state: RootState) => state.user.user._id);
 	return (
 		<Card
-			sx={{ maxWidth: 280, width: 280 }}
+			sx={{ maxWidth: 270, width: 270 }}
 			className={`shadow-md border ${
 				themeMode === "dark" ? "border-slate-700" : "border-slate-400"
 			}

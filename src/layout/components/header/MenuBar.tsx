@@ -1,6 +1,6 @@
-import { Box, Menu, Avatar } from "@mui/material";
+import { Box, Menu } from "@mui/material";
 import { IconButton } from "@mui/material";
-import React, { memo } from "react";
+import React from "react";
 import { PersonOutline, AccountCircle } from "@mui/icons-material";
 import NavCustomLink from "../../../routes/helpers/NavCustomLink";
 import ROUTES from "../../../routes/helpers/ROUTES";
@@ -40,7 +40,10 @@ const MenuBar = () => {
 					vertical: "bottom",
 					horizontal: "left",
 				}}
-				onClick={handleCloseNavMenu}
+				transformOrigin={{
+					vertical: "top",
+					horizontal: "right",
+				}}
 			>
 				<Box sx={style}>
 					{user && (

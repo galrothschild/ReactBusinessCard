@@ -3,7 +3,7 @@ import { AccountBoxOutlined, Favorite, Info } from "@mui/icons-material";
 import { useLocation, useMatch, useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/helpers/ROUTES";
 import { useSelector } from "react-redux";
-import { RootState, store } from "../../../redux/store";
+import { RootState } from "../../../redux/store";
 
 const Footer = () => {
 	const navigate = useNavigate();

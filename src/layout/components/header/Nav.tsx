@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { Box, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import NavCustomLink from "../../../routes/helpers/NavCustomLink";
 
 const Nav = () => {
 	const {
@@ -33,36 +34,40 @@ const Nav = () => {
 			</Box>
 			<Box sx={{ display: { sm: "flex", md: "none" } }}>
 				<IconButton
-					aria-controls="menu"
+					aria-controls="nav"
 					aria-haspopup="true"
 					onClick={handleClick}
 				>
 					<MenuIcon />
 				</IconButton>
 				<Menu
-					id="menu"
+					id="nav"
 					anchorEl={anchorEl}
 					keepMounted
 					open={Boolean(anchorEl)}
 					onClose={handleClose}
+					sx={{ maxWidth: "80%" }}
 				>
-					<MenuItem onClick={handleClose}>
-						<CustomLink to={ROUTES.ABOUT}>About</CustomLink>
-					</MenuItem>
+					<NavCustomLink to={ROUTES.ROOT} action={handleClose} label="Home" />
+
+					<NavCustomLink to={ROUTES.ABOUT} action={handleClose} label="About" />
+
 					{isLoggedIn && (
-						<MenuItem onClick={handleClose}>
-							<CustomLink to={ROUTES.FAV_CARDS}>Fav Cards</CustomLink>
-						</MenuItem>
+						<NavCustomLink
+							to={ROUTES.FAV_CARDS}
+							action={handleClose}
+							label="Fav Cards"
+						/>
 					)}
 					{isLoggedIn && isBusiness && (
-						<MenuItem onClick={handleClose}>
-							<CustomLink to={ROUTES.MY_CARDS}>My Cards</CustomLink>
-						</MenuItem>
+						<NavCustomLink
+							to={ROUTES.MY_CARDS}
+							action={handleClose}
+							label="My Cards"
+						/>
 					)}
 					{isAdmin && (
-						<MenuItem onClick={handleClose}>
-							<CustomLink to={ROUTES.CRM}>CRM</CustomLink>
-						</MenuItem>
+						<NavCustomLink to={ROUTES.CRM} action={handleClose} label="CRM" />
 					)}
 				</Menu>
 			</Box>

@@ -133,7 +133,6 @@ const Input = (
 		>
 			<FormControl sx={{ minWidth: 250 }}>
 				{inputType === "checkbox" ? (
-					// TODO: Fix checkbox
 					<FormControlLabel
 						control={
 							<Checkbox

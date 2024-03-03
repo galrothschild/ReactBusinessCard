@@ -3,7 +3,11 @@ import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import Joi, { ObjectSchema } from "joi";
-import { resetForm, setFormError } from "../../redux/forms/formDataSlice";
+import {
+	resetForm,
+	setFormData,
+	setFormError,
+} from "../../redux/forms/formDataSlice";
 import { formDataType } from "../models/formDataTypes";
 
 export const useForm = (
@@ -14,7 +18,7 @@ export const useForm = (
 	setData: ActionCreatorWithPayload<any>,
 	setError: ActionCreatorWithPayload<any>,
 ) => {
-	const data = useSelector(
+	const data: formDataType = useSelector(
 		(state: RootState) => state.formData[`${formName}Data`],
 	);
 	const errors = useSelector(
@@ -22,7 +26,12 @@ export const useForm = (
 	);
 	const formError = useSelector((state: RootState) => state.formData.formError);
 	const dispatch = useDispatch();
-	dispatch(setFormError(""));
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		dispatch(setFormError(""));
+		dispatch(setFormData({ formName, formData: initialForm }));
+	}, []);
+
 	const handleReset = useCallback(() => {
 		dispatch(resetForm(formName));
 	}, [formName, dispatch]);
@@ -71,10 +80,6 @@ export const useForm = (
 		}
 		dispatch(setData({ name, value: !data[name as keyof typeof data] }));
 	};
-	// Resetting form error
-	useEffect(() => {
-		dispatch(setFormError(""));
-	});
 	return {
 		handleReset,
 		validateProperty,

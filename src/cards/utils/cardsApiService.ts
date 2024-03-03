@@ -1,5 +1,10 @@
 import { AxiosResponse } from "axios";
-import { getFromAPI, patchtoAPI, postToAPI } from "../../utlis/apiService";
+import {
+	getFromAPI,
+	patchtoAPI,
+	postToAPI,
+	putToAPI,
+} from "../../utlis/apiService";
 import { createCardNormalizedData } from "../models/CreateCardModels";
 import { ICard } from "../models/CardModel";
 import { IUser } from "../../users/models/models";
@@ -23,13 +28,12 @@ export const createCard = async (
 	data: createCardNormalizedData,
 	token: string,
 ) => {
-	try {
-		const res = (await postToAPI("cards", data, token)) as AxiosResponse<
-			ICard | IUser
-		>;
-		if (typeof res === "string") return false;
-		return res?.data;
-	} catch (error) {
-		return false;
-	}
+	return postToAPI("cards", data, token);
+};
+export const updateCard = async (
+	normalizedCard: createCardNormalizedData,
+	cardID: string,
+	token: string,
+) => {
+	return putToAPI("cards", cardID, normalizedCard, token);
 };

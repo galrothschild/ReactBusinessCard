@@ -15,6 +15,8 @@ import { getToken } from "../../users/utils/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/helpers/ROUTES";
 import useSnackbar from "../../snackbar/hooks/useSnackbar";
+import axios, { Axios, AxiosError, AxiosResponse } from "axios";
+import { ICard } from "../models/CardModel";
 
 const CreateCardPage = () => {
 	const navigate = useNavigate();
@@ -28,17 +30,36 @@ const CreateCardPage = () => {
 			const token = getToken();
 			if (!token) return "something went wrong";
 			const normalizedCard = normalizeCard(data);
-			const response = await createCard(normalizedCard, token);
-			if (response) {
-				envokeSnackbar("Successfully created card", "success", 3000);
-				const { _id: cardID } = response;
-				const card = await getCardByID(cardID);
-				if (card) {
-					dispatch(addCard(card));
-					navigate(ROUTES.MY_CARDS);
+			try{
+
+				const response = await createCard(normalizedCard, token) as AxiosResponse<ICard>;
+				if (response.status === 201) {
+					envokeSnackbar("Successfully created card", "success", 3000);
+					const { _id: cardID } = response.data;
+					const card = await getCardByID(cardID);
+					if (card) {
+						dispatch(addCard(card));
+						navigate(ROUTES.MY_CARDS);
+					}
+				} else {
+					envokeSnackbar("Something went wrong...", "error", 3000);
+					console.log(response)
 				}
-			} else {
-				envokeSnackbar("Something went wrong...", "error", 3000);
+			} catch(err){
+				if (axios.isAxiosError(err)) {
+					if (err.response?.data.includes("duplicate")) {
+						console.log(err)
+						const message = `Duplicate ${err.response?.data.match(/dup key: { (\w+):/)[1]}`;
+						envokeSnackbar(message, "error", 3000);
+					}
+					else {
+						envokeSnackbar("Something went wrong...", "error", 3000);
+					}
+				}
+				else {
+					envokeSnackbar("Something went wrong...", "error", 3000);
+
+				}
 			}
 		},
 		[dispatch, navigate, envokeSnackbar],

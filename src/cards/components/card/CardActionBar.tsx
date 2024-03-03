@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { ICard } from "../../models/CardModel";
 import { Box, CardActions, IconButton } from "@mui/material";
-import { Delete, Edit, Favorite } from "@mui/icons-material";
+import { Delete, Edit, Favorite, Phone } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import useCardActions from "../../utils/useCardActions";
@@ -19,13 +19,8 @@ const CardActionBar: React.FC<Props> = ({ card, isLiked }) => {
 	return (
 		<>
 			<CardActions disableSpacing>
-				<Box>
-					{card.user_id === _id && (
-						<IconButton onClick={handleDelete}>
-							<Delete />
-						</IconButton>
-					)}
-					{isLoggedIn && (
+				{isLoggedIn && (
+					<>
 						<IconButton
 							onClick={() => {
 								handleLike(token);
@@ -33,13 +28,24 @@ const CardActionBar: React.FC<Props> = ({ card, isLiked }) => {
 						>
 							<Favorite color={likedColor} />
 						</IconButton>
-					)}
-					{card.user_id === _id && (
-						<IconButton onClick={handleEdit}>
+
+						<IconButton href={`tel:${card.phone}`}>
+							<Phone />
+						</IconButton>
+					</>
+				)}
+
+				{card.user_id === _id && (
+					<>
+						<IconButton onClick={handleEdit} sx={{ ml: "auto" }}>
 							<Edit />
 						</IconButton>
-					)}
-				</Box>
+
+						<IconButton onClick={handleDelete}>
+							<Delete />
+						</IconButton>
+					</>
+				)}
 			</CardActions>
 		</>
 	);

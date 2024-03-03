@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { loginData, signupData } from "../../users/models/models";
 import { initialCreateCard, initialLogin, initialSignup } from "./initialForms";
 import { createCardData } from "../../cards/models/CreateCardModels";
+import { formDataType } from "../../forms/models/formDataTypes";
 interface formsState {
 	loginData: loginData;
 	loginErrors: loginData;
@@ -40,6 +41,25 @@ const formDataSlice = createSlice({
 				case "createCard":
 					state.createCardData = initialCreateCard;
 					state.createCardErrors = initialCreateCard;
+					break;
+				default:
+					break;
+			}
+		},
+		setFormData: (
+			state,
+			action: PayloadAction<{ formName: string; formData: formDataType }>,
+		) => {
+			const { formName, formData } = action.payload;
+			switch (formName) {
+				case "login":
+					state.loginData = formData as loginData;
+					break;
+				case "signup":
+					state.signupData = formData as signupData;
+					break;
+				case "createCard":
+					state.createCardData = formData as createCardData;
 					break;
 				default:
 					break;
@@ -99,5 +119,6 @@ export const {
 	setCreateCardErrors,
 	setFormError,
 	resetForm,
+	setFormData,
 } = formDataSlice.actions;
 export default formDataSlice.reducer;

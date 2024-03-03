@@ -38,7 +38,7 @@ const MappedCards: React.FC<Props> = ({ cards, isPending }) => {
 						md={cards.length < 3 ? 12 / cards.length : 4}
 						lg={cards.length < 4 ? 12 / cards.length : 3}
 						key={card._id}
-						sx={{ placeItems: "center", display: "grid" }}
+						sx={{ placeItems: "center", display: "grid", pl: 0 }}
 					>
 						<CardComponent card={card} />
 					</Grid>

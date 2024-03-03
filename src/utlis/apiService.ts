@@ -3,6 +3,7 @@ import { ICard } from "../cards/models/CardModel";
 import { IUser, SignupResponse } from "../users/models/models";
 import { AxiosResponse } from "axios";
 import { formDataType } from "../forms/models/formDataTypes";
+import { createCardNormalizedData } from "../cards/models/CreateCardModels";
 
 const ApiURL: string = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2";
 
@@ -45,10 +46,7 @@ export const postToAPI = async (
 
 		return response;
 	} catch (error) {
-		if (error instanceof Error) {
-			return Promise.reject(error.message);
-		}
-		return Promise.reject(`Unidentified Error: ${error}`);
+		return Promise.reject(error);
 	}
 };
 
@@ -68,10 +66,7 @@ export const patchtoAPI = async (
 		}
 		return response;
 	} catch (error) {
-		if (error instanceof Error) {
-			return Promise.reject(error.message);
-		}
-		return Promise.reject(`Unidentified Error: ${error}`);
+		Promise.reject(error);
 	}
 };
 
@@ -84,6 +79,25 @@ export const deleteFromAPI = async (
 	let response: AxiosResponse;
 	try {
 		response = await instance.delete(`${ApiURL}/${api}/${id}`);
+		return response;
+	} catch (error) {
+		if (error instanceof Error) {
+			return Promise.reject(error.message);
+		}
+		return Promise.reject(`Unidentified Error: ${error}`);
+	}
+};
+
+export const putToAPI = async (
+	api: "cards" | "users",
+	id: string,
+	data: createCardNormalizedData | IUser,
+	token: string,
+) => {
+	instance.defaults.headers.common["x-auth-token"] = token;
+	let response: AxiosResponse;
+	try {
+		response = await instance.put(`${ApiURL}/${api}/${id}`, data);
 		return response;
 	} catch (error) {
 		if (error instanceof Error) {

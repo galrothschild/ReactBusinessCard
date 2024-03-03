@@ -54,7 +54,7 @@ const SearchBar = () => {
 		setSearchParams({ q: query });
 	};
 	return (
-		<Box sx={{ marginLeft: "auto", mr: "5%" }}>
+		<Box sx={{ marginLeft: "auto", mr: "5%", my: 1 }}>
 			<Search>
 				<SearchIconWrapper>
 					<SearchIcon />

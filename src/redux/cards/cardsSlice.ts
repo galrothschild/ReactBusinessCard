@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ICard } from "../../cards/models/CardModel";
+import { updateCard } from "../../cards/utils/cardsApiService";
 
 interface cardsState {
 	cards: ICard[];
@@ -44,9 +45,20 @@ const cardsSlice = createSlice({
 				}
 			}
 		},
+		setUpdatedCard: (state, action: PayloadAction<ICard>) => {
+			const { _id } = action.payload;
+			const index = state.cards.findIndex((card) => card._id === _id);
+			state.cards[index] = action.payload;
+		},
 	},
 });
 
-export const { setCards, setPending, setLikeCard, addCard, removeCard } =
-	cardsSlice.actions;
+export const {
+	setCards,
+	setPending,
+	setLikeCard,
+	addCard,
+	removeCard,
+	setUpdatedCard,
+} = cardsSlice.actions;
 export default cardsSlice.reducer;

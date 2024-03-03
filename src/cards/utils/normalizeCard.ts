@@ -29,6 +29,24 @@ export const normalizeCard = (card: createCardData) => {
 };
 
 export const denormalizeCard = (normalizedCard: ICard): createCardData => {
+	if (!normalizedCard) {
+		return {
+			title: "",
+			subtitle: "",
+			description: "",
+			phone: "",
+			email: "",
+			website: "",
+			"image address": "",
+			"image description": "",
+			state: "",
+			country: "",
+			city: "",
+			street: "",
+			"house number": "",
+			zip: "",
+		};
+	}
 	const denormalizedCard: createCardData = {
 		title: normalizedCard.title,
 		subtitle: normalizedCard.subtitle,
