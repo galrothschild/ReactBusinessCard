@@ -12,6 +12,7 @@ import MyCardsPage from "../cards/pages/MyCardsPage";
 import FavCardsPage from "../cards/pages/FavCardsPage";
 import CreateCardPage from "../cards/pages/CreateCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
+import ProfilePage from "../users/pages/ProfilePage";
 
 const Router = () => {
 	const {
@@ -75,6 +76,7 @@ const Router = () => {
 			<Route path={ROUTES.LOGIN} element={<LoginPage />} />
 			<Route path={ROUTES.SIGNUP} element={<SignupPage />} />
 			<Route path="*" element={<Navigate replace to={"404"} />} />
+			<Route path={ROUTES.USER_PROFILE} element={<ProfilePage />} />
 		</Routes>
 	);
 };
