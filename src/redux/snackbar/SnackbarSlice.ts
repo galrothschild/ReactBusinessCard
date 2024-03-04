@@ -15,7 +15,7 @@ const snackbar = createSlice({
 	name: "snackbar",
 	initialState,
 	reducers: {
-		envokeSnack: (
+		triggerSnack: (
 			state,
 			action: PayloadAction<{ message: string; color: "success" | "error" }>,
 		) => {
@@ -30,5 +30,5 @@ const snackbar = createSlice({
 	},
 });
 
-export const { envokeSnack, closeSnack } = snackbar.actions;
+export const { triggerSnack, closeSnack } = snackbar.actions;
 export default snackbar.reducer;

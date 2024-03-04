@@ -14,11 +14,10 @@ import { RootState } from "../../redux/store";
 import axios, { AxiosResponse } from "axios";
 import useSnackbar from "../../snackbar/hooks/useSnackbar";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { setUpdatedCard } from "../../redux/cards/cardsSlice";
 
 const EditCardPage = () => {
-	const { envokeSnackbar, somethingWentWrong } = useSnackbar();
+	const { triggerSnackbar, somethingWentWrong } = useSnackbar();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const cards = useSelector((state: RootState) => state.cards.cards);
@@ -34,7 +33,7 @@ const EditCardPage = () => {
 				token,
 			)) as AxiosResponse<ICard>;
 			if (response.status === 200) {
-				envokeSnackbar("Successfully updated card", "success", 3000);
+				triggerSnackbar("Successfully updated card", "success", 3000);
 				dispatch(setUpdatedCard(response.data));
 				navigate(-1);
 			} else {
@@ -46,7 +45,7 @@ const EditCardPage = () => {
 					const message = `Duplicate ${
 						err.response?.data.match(/dup key: { (\w+):/)[1]
 					}`;
-					envokeSnackbar(message, "error", 3000);
+					triggerSnackbar(message, "error", 3000);
 				} else {
 					somethingWentWrong();
 				}

@@ -6,7 +6,7 @@ import { getCards } from "./cardsApiService";
 import { useEffect } from "react";
 import useSnackbar from "../../snackbar/hooks/useSnackbar";
 const useCards = () => {
-	const { envokeSnackbar } = useSnackbar();
+	const { triggerSnackbar } = useSnackbar();
 	const dispatch = useDispatch<AppDispatch>();
 	const cards = useSelector((state: RootState) => state.cards.cards);
 	const isPending = useSelector((state: RootState) => state.cards.isPending);
@@ -16,11 +16,11 @@ const useCards = () => {
 			try {
 				dispatch(setPending(true));
 				cards = await getCards();
-				envokeSnackbar("Success!", "success", 5000);
+				triggerSnackbar("Success!", "success", 5000);
 			} catch (err) {
 				dispatch(setPending(false));
 				error = err;
-				envokeSnackbar("Something went wrong...", "error", 5000);
+				triggerSnackbar("Something went wrong...", "error", 5000);
 			} finally {
 				dispatch(setPending(false));
 			}

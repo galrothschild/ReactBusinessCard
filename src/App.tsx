@@ -46,13 +46,13 @@ function App() {
 	const sessionExpiration = useSelector(
 		(state: RootState) => state.user.sessionExpiration,
 	);
-	const { envokeSnackbar } = useSnackbar();
+	const { triggerSnackbar } = useSnackbar();
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		if (sessionExpiration < new Date().getTime() && sessionExpiration !== 0) {
 			dispatch(logout());
 			navigate("/login");
-			envokeSnackbar("Session expired", "error", 3000);
+			triggerSnackbar("Session expired", "error", 3000);
 		} else {
 			dispatch(resetSessionExpiration());
 		}

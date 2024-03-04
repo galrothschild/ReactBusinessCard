@@ -25,7 +25,7 @@ import useSnackbar from "../../snackbar/hooks/useSnackbar";
 export const useUser = (useCase: "signup" | "login") => {
 	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
-	const { envokeSnackbar } = useSnackbar();
+	const { triggerSnackbar } = useSnackbar();
 	switch (useCase) {
 		case "signup": {
 		}
@@ -42,7 +42,7 @@ export const useUser = (useCase: "signup" | "login") => {
 				const message = `This account is blocked, until ${new Date(
 					usersFailedAttempts.blockExpiration,
 				).toLocaleString()} Try again later.`;
-				envokeSnackbar(message, "error", 5000);
+				triggerSnackbar(message, "error", 5000);
 				return message;
 			}
 			dispatch(resetFailedAttempts(data.email));
@@ -50,7 +50,7 @@ export const useUser = (useCase: "signup" | "login") => {
 		const token = await login(data);
 		if (!token) {
 			dispatch(setFailedAttempts(data.email));
-			envokeSnackbar("Incorrect username or password", "error", 5000);
+			triggerSnackbar("Incorrect username or password", "error", 5000);
 			return "Incorrect username or password";
 		}
 		if (typeof token === "string") {
@@ -61,7 +61,7 @@ export const useUser = (useCase: "signup" | "login") => {
 			const fullUser = (await getUserByID(user._id, token)) as IUser;
 			dispatch(setUser(fullUser));
 			dispatch(setLogged(true));
-			envokeSnackbar("Welcome back!", "success", 5000);
+			triggerSnackbar("Welcome back!", "success", 5000);
 			navigate("/cards");
 		}
 		return Promise.resolve();

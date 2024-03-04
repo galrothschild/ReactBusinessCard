@@ -20,7 +20,7 @@ import { ICard } from "../models/CardModel";
 
 const CreateCardPage = () => {
 	const navigate = useNavigate();
-	const { envokeSnackbar } = useSnackbar();
+	const { triggerSnackbar } = useSnackbar();
 	const initialForm = useSelector(
 		(state: RootState) => state.formData.createCardData,
 	);
@@ -36,7 +36,7 @@ const CreateCardPage = () => {
 					token,
 				)) as AxiosResponse<ICard>;
 				if (response.status === 201) {
-					envokeSnackbar("Successfully created card", "success", 3000);
+					triggerSnackbar("Successfully created card", "success", 3000);
 					const { _id: cardID } = response.data;
 					const card = await getCardByID(cardID);
 					if (card) {
@@ -44,7 +44,7 @@ const CreateCardPage = () => {
 						navigate(ROUTES.MY_CARDS);
 					}
 				} else {
-					envokeSnackbar("Something went wrong...", "error", 3000);
+					triggerSnackbar("Something went wrong...", "error", 3000);
 				}
 			} catch (err) {
 				if (axios.isAxiosError(err)) {
@@ -52,16 +52,16 @@ const CreateCardPage = () => {
 						const message = `Duplicate ${
 							err.response?.data.match(/dup key: { (\w+):/)[1]
 						}`;
-						envokeSnackbar(message, "error", 3000);
+						triggerSnackbar(message, "error", 3000);
 					} else {
-						envokeSnackbar("Something went wrong...", "error", 3000);
+						triggerSnackbar("Something went wrong...", "error", 3000);
 					}
 				} else {
-					envokeSnackbar("Something went wrong...", "error", 3000);
+					triggerSnackbar("Something went wrong...", "error", 3000);
 				}
 			}
 		},
-		[dispatch, navigate, envokeSnackbar],
+		[dispatch, navigate, triggerSnackbar],
 	);
 	const formActions = useForm(
 		initialForm,
