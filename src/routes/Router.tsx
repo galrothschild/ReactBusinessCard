@@ -71,12 +71,17 @@ const Router = () => {
 					isLoggedIn ? <FavCardsPage /> : <Navigate replace to={ROUTES.LOGIN} />
 				}
 			/>
+			<Route
+				path={`${ROUTES.USER_PROFILE}`}
+				element={
+					isLoggedIn ? <ProfilePage /> : <Navigate replace to={ROUTES.LOGIN} />
+				}
+			/>
 
 			<Route path="404" element={<ErrorPage />} />
 			<Route path={ROUTES.LOGIN} element={<LoginPage />} />
 			<Route path={ROUTES.SIGNUP} element={<SignupPage />} />
 			<Route path="*" element={<Navigate replace to={"404"} />} />
-			<Route path={ROUTES.USER_PROFILE} element={<ProfilePage />} />
 		</Routes>
 	);
 };

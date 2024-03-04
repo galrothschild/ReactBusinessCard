@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { logout } from "./redux/user/userSlice";
+import { logout, resetSessionExpiration } from "./redux/user/userSlice";
 import useSnackbar from "./snackbar/hooks/useSnackbar";
 
 function App() {
@@ -21,8 +21,18 @@ function App() {
 					root: {
 						"&.MuiGrid-root": {
 							"@media (max-width:281px)": {
-								paddingLeft: "2px",
+								paddingLeft: "8px",
 							},
+						},
+					},
+				},
+			},
+			MuiContainer: {
+				styleOverrides: {
+					root: {
+						"@media (max-width:281px)": {
+							paddingLeft: "5px",
+							paddingRight: "5px",
 						},
 					},
 				},
@@ -44,7 +54,7 @@ function App() {
 			navigate("/login");
 			envokeSnackbar("Session expired", "error", 3000);
 		} else {
-			console.log("Banana");
+			dispatch(resetSessionExpiration());
 		}
 	}, [location]);
 	return (

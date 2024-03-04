@@ -30,9 +30,11 @@ const CreateCardPage = () => {
 			const token = getToken();
 			if (!token) return "something went wrong";
 			const normalizedCard = normalizeCard(data);
-			try{
-
-				const response = await createCard(normalizedCard, token) as AxiosResponse<ICard>;
+			try {
+				const response = (await createCard(
+					normalizedCard,
+					token,
+				)) as AxiosResponse<ICard>;
 				if (response.status === 201) {
 					envokeSnackbar("Successfully created card", "success", 3000);
 					const { _id: cardID } = response.data;
@@ -43,22 +45,19 @@ const CreateCardPage = () => {
 					}
 				} else {
 					envokeSnackbar("Something went wrong...", "error", 3000);
-					console.log(response)
 				}
-			} catch(err){
+			} catch (err) {
 				if (axios.isAxiosError(err)) {
 					if (err.response?.data.includes("duplicate")) {
-						console.log(err)
-						const message = `Duplicate ${err.response?.data.match(/dup key: { (\w+):/)[1]}`;
+						const message = `Duplicate ${
+							err.response?.data.match(/dup key: { (\w+):/)[1]
+						}`;
 						envokeSnackbar(message, "error", 3000);
-					}
-					else {
+					} else {
 						envokeSnackbar("Something went wrong...", "error", 3000);
 					}
-				}
-				else {
+				} else {
 					envokeSnackbar("Something went wrong...", "error", 3000);
-
 				}
 			}
 		},

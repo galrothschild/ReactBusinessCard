@@ -8,9 +8,14 @@ import formDataReducer from "./forms/formDataSlice";
 import persistStore from "redux-persist/es/persistStore";
 import themeReducer from "./theme/themeSlice";
 import snackbarReducer from "./snackbar/SnackbarSlice";
+import blockUserReducer from "./user/blockUserSlice";
 
 const userPersistConfig = {
 	key: "user",
+	storage,
+};
+const blockUserPersistConfig = {
+	key: "blockUser",
 	storage,
 };
 const themePersistConfig = {
@@ -20,7 +25,10 @@ const themePersistConfig = {
 
 const persistUserReducer = persistReducer(userPersistConfig, userReducer);
 const persistThemeReducer = persistReducer(themePersistConfig, themeReducer);
-
+const persistBlockUserReducer = persistReducer(
+	blockUserPersistConfig,
+	blockUserReducer,
+);
 export const store = configureStore({
 	reducer: {
 		cards: cardsReducer,
@@ -28,6 +36,7 @@ export const store = configureStore({
 		formData: formDataReducer,
 		theme: persistThemeReducer,
 		snack: snackbarReducer,
+		blockUser: persistBlockUserReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

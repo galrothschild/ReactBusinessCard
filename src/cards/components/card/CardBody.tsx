@@ -10,6 +10,7 @@ import {
 
 interface Props {
 	card: ICard;
+	extended?: boolean;
 }
 
 const CardBody: React.FC<Props> = ({ card }) => {

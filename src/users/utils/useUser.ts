@@ -16,10 +16,16 @@ import {
 import { IUser, signupData } from "../models/models";
 import normalizeUser from "./normalizeUser";
 import { setLogin } from "../../redux/forms/formDataSlice";
+import {
+	resetFailedAttempts,
+	setFailedAttempts,
+} from "../../redux/user/blockUserSlice";
+import useSnackbar from "../../snackbar/hooks/useSnackbar";
 
 export const useUser = (useCase: "signup" | "login") => {
 	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
+	const { envokeSnackbar } = useSnackbar();
 	switch (useCase) {
 		case "signup": {
 		}
@@ -27,16 +33,35 @@ export const useUser = (useCase: "signup" | "login") => {
 	const data = useSelector(
 		(state: RootState) => state.formData[`${useCase}Data`],
 	);
+	const usersFailedAttempts = useSelector((state: RootState) =>
+		state.blockUser.failedAttempts.find((user) => data.email === user.email),
+	);
 	const handleLogin = async () => {
+		if (usersFailedAttempts?.isBlocked) {
+			if (new Date().getTime() < usersFailedAttempts.blockExpiration) {
+				const message = `This account is blocked, until ${new Date(
+					usersFailedAttempts.blockExpiration,
+				).toLocaleString()} Try again later.`;
+				envokeSnackbar(message, "error", 5000);
+				return message;
+			}
+			dispatch(resetFailedAttempts(data.email));
+		}
 		const token = await login(data);
-		if (!token) return "Incorrect username or password";
+		if (!token) {
+			dispatch(setFailedAttempts(data.email));
+			envokeSnackbar("Incorrect username or password", "error", 5000);
+			return "Incorrect username or password";
+		}
 		if (typeof token === "string") {
+			dispatch(resetFailedAttempts(data.email));
 			setTokenInLocalStorage(token);
 			dispatch(setToken(token));
 			const user = getUser() as IUser;
 			const fullUser = (await getUserByID(user._id, token)) as IUser;
 			dispatch(setUser(fullUser));
 			dispatch(setLogged(true));
+			envokeSnackbar("Welcome back!", "success", 5000);
 			navigate("/cards");
 		}
 		return Promise.resolve();

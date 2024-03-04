@@ -20,7 +20,7 @@ const LoginPage = () => {
 	return (
 		<Form
 			colNum={1}
-			inputs={["email", "password(Pass)"]}
+			inputs={["email(*)", "password(Pass*)"]}
 			title="Log In"
 			formActions={formActions}
 		/>

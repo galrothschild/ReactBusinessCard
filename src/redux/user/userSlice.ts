@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../../users/models/models";
+import { addToNow } from "./util/addToDate";
 
 interface userState {
 	user: IUser;
@@ -27,14 +28,18 @@ const userSlice = createSlice({
 		},
 		setLogged: (state, action: PayloadAction<boolean>) => {
 			// set session expiration to 30 minutes from now
-			state.sessionExpiration = new Date().getTime() + 1000 * 60 * 30;
+			state.sessionExpiration = addToNow(30, "minutes");
 			state.isLoggedIn = action.payload;
 		},
 		logout: () => {
 			return initialState;
 		},
+		resetSessionExpiration: (state) => {
+			state.sessionExpiration = addToNow(30, "minutes");
+		},
 	},
 });
 
-export const { setUser, setToken, setLogged, logout } = userSlice.actions;
+export const { setUser, setToken, setLogged, logout, resetSessionExpiration } =
+	userSlice.actions;
 export default userSlice.reducer;

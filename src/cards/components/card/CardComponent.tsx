@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 interface Props {
 	card: ICard;
+	extended?: boolean;
 }
 
 const CardComponent: React.FC<Props> = ({ card }) => {
