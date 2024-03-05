@@ -13,6 +13,7 @@ import FavCardsPage from "../cards/pages/FavCardsPage";
 import CreateCardPage from "../cards/pages/CreateCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import ProfilePage from "../users/pages/ProfilePage";
+import EditUserPage from "../users/pages/EditUserPage";
 
 const Router = () => {
 	const {
@@ -75,6 +76,12 @@ const Router = () => {
 				path={`${ROUTES.USER_PROFILE}`}
 				element={
 					isLoggedIn ? <ProfilePage /> : <Navigate replace to={ROUTES.LOGIN} />
+				}
+			/>
+			<Route
+				path={`${ROUTES.EDIT_USER}`}
+				element={
+					isLoggedIn ? <EditUserPage /> : <Navigate replace to={ROUTES.LOGIN} />
 				}
 			/>
 

@@ -10,6 +10,7 @@ interface formsState {
 	signupErrors: signupData;
 	createCardData: createCardData;
 	createCardErrors: createCardData;
+
 	formError: string;
 }
 const initialState: formsState = {
@@ -57,6 +58,9 @@ const formDataSlice = createSlice({
 					break;
 				case "signup":
 					state.signupData = formData as signupData;
+					state.signupData["business account"] = JSON.parse(
+						state.signupData["business account"] as string,
+					) as boolean;
 					break;
 				case "createCard":
 					state.createCardData = formData as createCardData;

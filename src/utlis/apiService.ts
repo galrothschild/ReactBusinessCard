@@ -1,6 +1,10 @@
 import axios from "axios";
 import { ICard } from "../cards/models/CardModel";
-import { IUser, SignupResponse } from "../users/models/models";
+import {
+	IUser,
+	SignupResponse,
+	updateUserNormalizedData,
+} from "../users/models/models";
 import { AxiosResponse } from "axios";
 import { formDataType } from "../forms/models/formDataTypes";
 import { createCardNormalizedData } from "../cards/models/CreateCardModels";
@@ -50,7 +54,7 @@ export const postToAPI = async (
 	}
 };
 
-export const patchtoAPI = async (
+export const patchToAPI = async (
 	api: "cards" | "users",
 	id: string,
 	token?: string,
@@ -91,7 +95,7 @@ export const deleteFromAPI = async (
 export const putToAPI = async (
 	api: "cards" | "users",
 	id: string,
-	data: createCardNormalizedData | IUser,
+	data: createCardNormalizedData | IUser | updateUserNormalizedData,
 	token: string,
 ) => {
 	instance.defaults.headers.common["x-auth-token"] = token;

@@ -26,10 +26,7 @@ export const useUser = (useCase: "signup" | "login") => {
 	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 	const { triggerSnackbar } = useSnackbar();
-	switch (useCase) {
-		case "signup": {
-		}
-	}
+
 	const data = useSelector(
 		(state: RootState) => state.formData[`${useCase}Data`],
 	);
@@ -79,5 +76,6 @@ export const useUser = (useCase: "signup" | "login") => {
 		dispatch(setLogin({ name: "email", value: normalizedUser.email }));
 		navigate("/login");
 	};
+
 	return { handleLogin, handleLogout, handleSignup };
 };

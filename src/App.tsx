@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ThemeProvider, createTheme } from "@mui/material";
 import Layout from "./layout/Layout";
 import Router from "./routes/Router";

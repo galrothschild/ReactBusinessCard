@@ -1,8 +1,14 @@
-import { getFromAPI, postToAPI } from "../../utlis/apiService";
+import {
+	getFromAPI,
+	patchToAPI,
+	postToAPI,
+	putToAPI,
+} from "../../utlis/apiService";
 import {
 	SignupResponse,
 	loginData,
 	signupNormalizedData,
+	updateUserNormalizedData,
 } from "../models/models";
 
 export const login = async (user: loginData) => {
@@ -33,4 +39,21 @@ export const getUserByID = async (id: string, token: string) => {
 	} catch (error) {
 		return error;
 	}
+};
+
+export const updateUser = async (
+	user: updateUserNormalizedData,
+	id: string,
+	token: string,
+) => {
+	try {
+		const res = await putToAPI("users", id, user, token);
+		return res;
+	} catch (error) {
+		return error;
+	}
+};
+
+export const patchUserBusinessStatus = async (id: string, token: string) => {
+	return patchToAPI("users", id, token);
 };

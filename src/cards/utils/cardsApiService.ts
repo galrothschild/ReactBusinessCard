@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import {
 	getFromAPI,
-	patchtoAPI,
+	patchToAPI,
 	postToAPI,
 	putToAPI,
 } from "../../utlis/apiService";
@@ -21,7 +21,7 @@ export const getMyCards = () => getFromAPI("cards", "my-cards");
 
 export const deleteCard = (id: string) => {};
 export const likeCard = async (cardID: string, token: string) => {
-	patchtoAPI("cards", cardID, token);
+	patchToAPI("cards", cardID, token);
 };
 
 export const createCard = async (

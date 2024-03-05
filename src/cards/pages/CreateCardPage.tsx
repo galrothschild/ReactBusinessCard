@@ -15,7 +15,7 @@ import { getToken } from "../../users/utils/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/helpers/ROUTES";
 import useSnackbar from "../../snackbar/hooks/useSnackbar";
-import axios, { Axios, AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { ICard } from "../models/CardModel";
 
 const CreateCardPage = () => {
