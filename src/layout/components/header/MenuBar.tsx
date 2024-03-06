@@ -18,7 +18,10 @@ const MenuBar = () => {
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
-	const user = useSelector((state: RootState) => state.user.isLoggedIn);
+	const {
+		isLoggedIn,
+		user: { _id: id },
+	} = useSelector((state: RootState) => state.user);
 	const style = { display: "flex", flexDirection: "column" };
 	const { handleLogout } = useUser("login");
 	return (
@@ -28,7 +31,7 @@ const MenuBar = () => {
 				aria-controls="menu-appbar"
 				aria-haspopup="true"
 			>
-				{user ? <AccountCircle /> : <PersonOutline />}
+				{isLoggedIn ? <AccountCircle /> : <PersonOutline />}
 			</IconButton>
 			<Menu
 				id="menu-appbar"
@@ -46,19 +49,30 @@ const MenuBar = () => {
 				}}
 			>
 				<Box sx={style}>
-					{user && (
+					{isLoggedIn && (
 						<>
-							<NavCustomLink to={ROUTES.USER_PROFILE} label="My Profile" />
-							<NavCustomLink to={ROUTES.EDIT_USER} label="Edit Profile" />
+							<NavCustomLink
+								action={handleCloseNavMenu}
+								to={ROUTES.USER_PROFILE}
+								label="My Profile"
+							/>
+							<NavCustomLink
+								action={handleCloseNavMenu}
+								to={`${ROUTES.EDIT_USER}/${id}`}
+								label="Edit Profile"
+							/>
 							<NavCustomLink
 								to={ROUTES.LOGIN}
 								label="Log Out"
-								action={handleLogout}
+								action={() => {
+									handleLogout();
+									handleCloseNavMenu();
+								}}
 							/>
 						</>
 					)}
 					<NavCustomLink to="about" label="About" />
-					{!user && (
+					{!isLoggedIn && (
 						<>
 							<NavCustomLink to={ROUTES.LOGIN} label="Log In" />
 							<NavCustomLink to={ROUTES.SIGNUP} label="Sign Up" />

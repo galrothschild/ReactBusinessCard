@@ -14,6 +14,7 @@ import CreateCardPage from "../cards/pages/CreateCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import ProfilePage from "../users/pages/ProfilePage";
 import EditUserPage from "../users/pages/EditUserPage";
+import CRMPage from "../users/pages/CRMPage";
 
 const Router = () => {
 	const {
@@ -73,15 +74,21 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path={`${ROUTES.USER_PROFILE}`}
+				path={`${ROUTES.USER_PROFILE}/:id?`}
 				element={
 					isLoggedIn ? <ProfilePage /> : <Navigate replace to={ROUTES.LOGIN} />
 				}
 			/>
 			<Route
-				path={`${ROUTES.EDIT_USER}`}
+				path={`${ROUTES.EDIT_USER}/:id`}
 				element={
 					isLoggedIn ? <EditUserPage /> : <Navigate replace to={ROUTES.LOGIN} />
+				}
+			/>
+			<Route
+				path={`${ROUTES.CRM}`}
+				element={
+					isLoggedIn ? <CRMPage /> : <Navigate replace to={ROUTES.LOGIN} />
 				}
 			/>
 

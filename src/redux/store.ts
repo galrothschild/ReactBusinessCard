@@ -9,6 +9,7 @@ import persistStore from "redux-persist/es/persistStore";
 import themeReducer from "./theme/themeSlice";
 import snackbarReducer from "./snackbar/SnackbarSlice";
 import blockUserReducer from "./user/blockUserSlice";
+import usersReducer from "./users/usersSlice";
 
 const userPersistConfig = {
 	key: "user",
@@ -37,6 +38,7 @@ export const store = configureStore({
 		theme: persistThemeReducer,
 		snack: snackbarReducer,
 		blockUser: persistBlockUserReducer,
+		users: usersReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

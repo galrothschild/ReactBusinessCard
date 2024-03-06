@@ -27,9 +27,10 @@ const useCards = () => {
 		}
 		dispatch(setCards(cards));
 	};
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		fetchCardsIfEmpty(cards);
-	});
+	}, []);
 
 	return { cards, isPending, error };
 };

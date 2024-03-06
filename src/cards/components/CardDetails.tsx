@@ -14,6 +14,9 @@ const CardDetails: React.FC<CardDetailProps> = ({ card }) => {
 	const year = createdAtDate.getFullYear();
 	const address = `${card.address.country} ${card.address.street} ${card.address.houseNumber} ${card.address.city}`;
 	const isDark = useSelector((state: RootState) => state.theme.isDark);
+	const website = card.web?.includes("http")
+		? card.web
+		: `https://${card.web}` || "#";
 	return (
 		<Box
 			sx={{
@@ -29,6 +32,15 @@ const CardDetails: React.FC<CardDetailProps> = ({ card }) => {
 					width={300}
 					height={300}
 				/>
+				<Button
+					variant="contained"
+					href={website}
+					color="primary"
+					sx={{ my: 2 }}
+					target="_blank"
+				>
+					Visit Website
+				</Button>
 				<Box>
 					<Box sx={{ display: "flex", justifyContent: "space-between" }}>
 						<Typography variant="h5" component="p" sx={{ mr: 2 }}>

@@ -21,6 +21,7 @@ import {
 	setFailedAttempts,
 } from "../../redux/user/blockUserSlice";
 import useSnackbar from "../../snackbar/hooks/useSnackbar";
+import { addUserToUsers } from "../../redux/users/usersSlice";
 
 export const useUser = (useCase: "signup" | "login") => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -57,6 +58,7 @@ export const useUser = (useCase: "signup" | "login") => {
 			const user = getUser() as IUser;
 			const fullUser = (await getUserByID(user._id, token)) as IUser;
 			dispatch(setUser(fullUser));
+			dispatch(addUserToUsers(fullUser));
 			dispatch(setLogged(true));
 			triggerSnackbar("Welcome back!", "success", 5000);
 			navigate("/cards");

@@ -1,4 +1,6 @@
+import { getUser } from "./localStorageService";
 import {
+	deleteFromAPI,
 	getFromAPI,
 	patchToAPI,
 	postToAPI,
@@ -56,4 +58,17 @@ export const updateUser = async (
 
 export const patchUserBusinessStatus = async (id: string, token: string) => {
 	return patchToAPI("users", id, token);
+};
+
+export const deleteUser = async (id: string, token: string) => {
+	return deleteFromAPI("users", id, token);
+};
+
+export const getUsers = async (token: string) => {
+	try {
+		const res = await getFromAPI("users", undefined, token);
+		return res;
+	} catch (error) {
+		return error;
+	}
 };

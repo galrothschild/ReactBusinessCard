@@ -5,6 +5,8 @@ import loginSchema from "../models/loginSchema";
 import { setLogin, setLoginErrors } from "../../redux/forms/formDataSlice";
 import { memo } from "react";
 import { initialLogin } from "../../redux/forms/initialForms";
+import { useDispatch } from "react-redux";
+import { resetUsers } from "../../redux/users/usersSlice";
 
 const LoginPage = () => {
 	const { handleLogin } = useUser("login");
@@ -17,6 +19,8 @@ const LoginPage = () => {
 		setLogin,
 		setLoginErrors,
 	);
+	const dispatch = useDispatch();
+	dispatch(resetUsers());
 	return (
 		<Form
 			colNum={1}

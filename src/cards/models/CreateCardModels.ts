@@ -62,12 +62,7 @@ export const createCardSchema = Joi.object({
 		.required(),
 	"house number": Joi.number().required(),
 	zip: Joi.number(),
-	website: Joi.string()
-		.regex(
-			/^(?:[a-z][a-z0-9+.-]*:|\/\/)(?:[^/\\?#]+(?:\/|\\?|\\#|$)|\\?[^#]*|\\#.*)?$/i,
-		)
-		.rule({ message: "must be a URL" })
-		.required(),
+	website: Joi.string().uri().rule({ message: "must be a URL" }).required(),
 	"image address": Joi.string().uri().required(),
 	"image description": Joi.string().required(),
 	email: Joi.string()
