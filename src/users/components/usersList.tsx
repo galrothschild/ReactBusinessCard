@@ -1,9 +1,6 @@
 import UserEntry from "./userEntry";
-import { useUsers } from "../utils/useUsers";
 import { Box, CircularProgress } from "@mui/material";
 import { ViewportList as List } from "react-viewport-list";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { IUser } from "../models/models";
 
 type UsersListProps = {

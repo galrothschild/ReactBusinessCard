@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ICard } from "../../cards/models/CardModel";
-import { updateCard } from "../../cards/utils/cardsApiService";
 
 interface cardsState {
 	cards: ICard[];

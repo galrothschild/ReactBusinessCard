@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import ROUTES from "../../../routes/helpers/ROUTES";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, Menu } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import NavCustomLink from "../../../routes/helpers/NavCustomLink";
 
