@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { logout, resetSessionExpiration } from "./redux/user/userSlice";
 import useSnackbar from "./snackbar/hooks/useSnackbar";
+import { resetFormState } from "./redux/forms/formDataSlice";
 
 function App() {
 	const isDark = useSelector((state: RootState) => state.theme.isDark);
@@ -52,6 +53,7 @@ function App() {
 	useEffect(() => {
 		if (sessionExpiration < new Date().getTime() && sessionExpiration !== 0) {
 			dispatch(logout());
+			dispatch(resetFormState());
 			navigate("/login");
 			triggerSnackbar("Session expired", "error", 3000);
 		} else {

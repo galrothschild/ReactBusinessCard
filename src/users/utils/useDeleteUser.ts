@@ -8,6 +8,7 @@ import useSnackbar from "../../snackbar/hooks/useSnackbar";
 import { logout } from "../../redux/user/userSlice";
 import { removeUserFromUsers } from "../../redux/users/usersSlice";
 import ROUTES from "../../routes/helpers/ROUTES";
+import { resetFormState } from "../../redux/forms/formDataSlice";
 
 export const useDeleteUser = (userId?: string) => {
 	const {
@@ -25,6 +26,7 @@ export const useDeleteUser = (userId?: string) => {
 			if (response.status === 200) {
 				if (id === _id) {
 					dispatch(logout());
+					dispatch(resetFormState());
 					navigate(ROUTES.LOGIN);
 				} else {
 					dispatch(removeUserFromUsers(id));

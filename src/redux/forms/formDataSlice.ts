@@ -111,6 +111,9 @@ const formDataSlice = createSlice({
 			const { name, value } = action.payload;
 			state.createCardErrors[name] = value;
 		},
+		resetFormState: () => {
+			return initialState;
+		},
 	},
 });
 
@@ -124,5 +127,6 @@ export const {
 	setFormError,
 	resetForm,
 	setFormData,
+	resetFormState,
 } = formDataSlice.actions;
 export default formDataSlice.reducer;

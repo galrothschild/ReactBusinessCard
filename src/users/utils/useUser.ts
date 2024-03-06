@@ -15,7 +15,7 @@ import {
 } from "../../redux/user/userSlice";
 import { IUser, signupData } from "../models/models";
 import normalizeUser from "./normalizeUser";
-import { setLogin } from "../../redux/forms/formDataSlice";
+import { resetFormState, setLogin } from "../../redux/forms/formDataSlice";
 import {
 	resetFailedAttempts,
 	setFailedAttempts,
@@ -68,6 +68,7 @@ export const useUser = (useCase: "signup" | "login") => {
 
 	const handleLogout = () => {
 		dispatch(logout());
+		dispatch(resetFormState());
 		removeToken();
 	};
 
