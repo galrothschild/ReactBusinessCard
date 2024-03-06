@@ -1,12 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import UserEntry from "./userEntry";
 import { useUsers } from "../utils/useUsers";
 import { Box, CircularProgress } from "@mui/material";
+import { ViewportList as List } from "react-viewport-list";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { IUser } from "../models/models";
 
-const UsersList = () => {
-	const { users, isPending, error } = useUsers();
+type UsersListProps = {
+	users: IUser[];
+	isPending: boolean;
+};
+
+const UsersList: React.FC<UsersListProps> = ({ users, isPending }) => {
 	if (isPending)
 		return (
 			<Box width="100%" sx={{ display: "grid", placeItems: "center", pt: 3 }}>
@@ -14,11 +19,11 @@ const UsersList = () => {
 			</Box>
 		);
 	return (
-		<Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-			{users.map((user) => (
-				<UserEntry user={user} key={user._id} />
-			))}
-		</Box>
+		<List items={users}>
+			{(user) => {
+				return <UserEntry user={user} key={user._id} />;
+			}}
+		</List>
 	);
 };
 

@@ -2,7 +2,7 @@ import Form from "../../forms/components/Form";
 import { useForm } from "../../forms/hooks/useForm";
 import { setSignup, setSignupErrors } from "../../redux/forms/formDataSlice";
 import signupSchema from "../models/signupSchema";
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import { useUpdateUser } from "../utils/useUpdateUser";
 
 const EditUserPage = () => {

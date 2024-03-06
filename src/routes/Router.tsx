@@ -87,9 +87,7 @@ const Router = () => {
 			/>
 			<Route
 				path={`${ROUTES.CRM}`}
-				element={
-					isLoggedIn ? <CRMPage /> : <Navigate replace to={ROUTES.LOGIN} />
-				}
+				element={isAdmin ? <CRMPage /> : <Navigate replace to={ROUTES.LOGIN} />}
 			/>
 
 			<Route path="404" element={<ErrorPage />} />

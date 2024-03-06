@@ -7,11 +7,7 @@ import ROUTES from "../../routes/helpers/ROUTES";
 import useSnackbar from "../../snackbar/hooks/useSnackbar";
 import { signupData, IUser } from "../models/models";
 import { normalizeUserForUpdate, denormalizeUser } from "./normalizeUser";
-import {
-	getUserByID,
-	patchUserBusinessStatus,
-	updateUser,
-} from "./userApiService";
+import { patchUserBusinessStatus, updateUser } from "./userApiService";
 import { updateUserInUsers } from "../../redux/users/usersSlice";
 
 export const useUpdateUser = () => {
@@ -25,7 +21,7 @@ export const useUpdateUser = () => {
 
 	const user =
 		useSelector((state: RootState) => state.users.users).find(
-			(user) => user._id === id,
+			(user: IUser) => user._id === id,
 		) || currentUser;
 	const initialForm = denormalizeUser(user) as signupData;
 

@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import {
 	getFromAPI,
 	patchToAPI,
@@ -7,7 +6,6 @@ import {
 } from "../../utlis/apiService";
 import { createCardNormalizedData } from "../models/CreateCardModels";
 import { ICard } from "../models/CardModel";
-import { IUser } from "../../users/models/models";
 export const getCards = async () => {
 	const cards = (await getFromAPI("cards")) as ICard[];
 	return cards;

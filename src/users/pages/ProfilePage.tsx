@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Box, Button } from "@mui/material";
@@ -6,9 +5,10 @@ import { capitalizeTitle } from "../../forms/utils/utils";
 import PageHeader from "../../pages/components/PageHeader";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 import { useDeleteUser } from "../utils/useDeleteUser";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProfilePage = () => {
+	const navigate = useNavigate();
 	const { _id } = useSelector((state: RootState) => state.user.user);
 	const userID = useParams().id || _id;
 	const { name, address, image, email, phone, isBusiness, createdAt, isAdmin } =
@@ -65,16 +65,21 @@ const ProfilePage = () => {
 						<p>Admin: {isAdmin ? "Yes" : "No"}</p>
 					</Box>
 				</Box>
-				<ConfirmationDialog
-					buttonColor="error"
-					buttonText="Delete User"
-					buttonVariant="outlined"
-					confirmButtonAction={handleDeleteUser}
-					confirmButtonColor="error"
-					confirmButtonText="Yes I am sure"
-					dialogTitle="Are you sure?"
-					dialogContent="This cannot be undone."
-				/>
+				{!isAdmin && (
+					<ConfirmationDialog
+						buttonColor="error"
+						buttonText="Delete User"
+						buttonVariant="outlined"
+						confirmButtonAction={handleDeleteUser}
+						confirmButtonColor="error"
+						confirmButtonText="Yes I am sure"
+						dialogTitle="Are you sure?"
+						dialogContent="This cannot be undone."
+					/>
+				)}
+				<Button variant="outlined" onClick={() => navigate(-1)}>
+					Cancel
+				</Button>
 			</Box>
 		</>
 	);

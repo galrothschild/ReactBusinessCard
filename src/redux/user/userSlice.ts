@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../../users/models/models";
 import { addToNow } from "./util/addToDate";
-import { resetUsers } from "../users/usersSlice";
 
 interface userState {
 	user: IUser;

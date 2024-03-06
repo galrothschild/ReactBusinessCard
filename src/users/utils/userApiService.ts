@@ -1,4 +1,3 @@
-import { getUser } from "./localStorageService";
 import {
 	deleteFromAPI,
 	getFromAPI,

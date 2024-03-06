@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { ICard } from "../../models/CardModel";
-import { Box, CardActions, IconButton } from "@mui/material";
+import { CardActions, IconButton } from "@mui/material";
 import { Delete, Edit, Favorite, Phone } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";

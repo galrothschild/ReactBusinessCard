@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import { IUser } from "../models/models";
-import { Box, Typography, useTheme, Button } from "@mui/material";
+import { Box, Typography, useTheme, Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ConfirmationDialog from "./ConfirmationDialog";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,7 @@ const UserEntry: React.FC<userEntryProps> = ({ user }) => {
 	return (
 		<Box
 			sx={{
+				mt: 1,
 				display: "flex",
 				gap: 2,
 				flexDirection: { md: "row", xs: "column" },
@@ -38,8 +39,14 @@ const UserEntry: React.FC<userEntryProps> = ({ user }) => {
 				color: textColor,
 			}}
 		>
-			<Typography variant="body1">Name: {name}</Typography>
-			<Typography variant="body1">Email: {user.email}</Typography>
+			<Stack>
+				<Typography variant="body1">Name</Typography>
+				<Typography variant="body1">{name}</Typography>
+			</Stack>
+			<Stack>
+				<Typography variant="body1">Email</Typography>
+				<Typography variant="body1">{user.email}</Typography>
+			</Stack>
 			<Button
 				variant="outlined"
 				color="info"
@@ -79,4 +86,4 @@ const UserEntry: React.FC<userEntryProps> = ({ user }) => {
 	);
 };
 
-export default UserEntry;
+export default memo(UserEntry);

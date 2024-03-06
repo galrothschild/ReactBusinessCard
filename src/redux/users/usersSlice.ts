@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../users/models/models";
 
-interface snackState {
+interface usersState {
 	users: IUser[];
 	isPending: boolean;
 }
-const initialState: snackState = {
+const initialState: usersState = {
 	users: [],
 	isPending: false,
 };
