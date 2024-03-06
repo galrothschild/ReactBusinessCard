@@ -1,5 +1,5 @@
 # Business Card and User Management System
-### My first React App
+This is my first React App
 
 # Welcome to the Business Card and User Management System!
 
@@ -82,7 +82,8 @@ The Business Card and User Management System is a web application designed in Re
     16. react-viewport-list
        - I used react-viewport-list for the user list, since it needed to load a big amount of data and render it.
        - react-viewport-list renders only items of the list that are in the viewport, that way the app is still fast.
-
+    17.
+       - Dark mode and light mode available, it will take your default browser settings at first. 
 
 
 
