@@ -82,9 +82,11 @@ The Business Card and User Management System is a web application designed in Re
     16. react-viewport-list
        - I used react-viewport-list for the user list, since it needed to load a big amount of data and render it.
        - react-viewport-list renders only items of the list that are in the viewport, that way the app is still fast.
-    17.
+    17. Dark mode support
        - Dark mode and light mode available, it will take your default browser settings at first. 
-
+    18. timeout and block:
+       - A user that was trying to log in with the wrong password 3 times, will be blocked for 24 hours from logging in.
+       - Session timeout if the user didn't do anything for 30 minutes
 
 
 
