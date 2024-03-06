@@ -18,20 +18,20 @@ The Business Card and User Management System is a web application designed in Re
        - Displays the user's profile information.
        - Allows users to edit their profile details.
 
-    3. Create New User Page:
+    3. Sign Up Page:
       -  Provides a form for creating a new user profile.
       -  Ensures secure password creation using regex for complexity.
 
-    4. Edit User Profile Page:
+    4. Edit User Page:
       -  Allows users to edit their existing profile details.
-      -  Accessible from the User Profile page.
+      -  Accessible from the Nav bar or from the CRM page.
 
     5. My Cards Page:
        - Displays all user-created business cards.
        - Allows CRUD operations on the cards, including the ability to edit card details.
 
     6. Create New Business Card Page:
-       - Provides a form for creating a new business card.
+       - A form for creating a new business card.
        - Only accessible to business users.
 
     7. Edit Business Card Page:
@@ -40,10 +40,10 @@ The Business Card and User Management System is a web application designed in Re
 
     8. Favorites Functionality:
        - Enables users to mark a business card as a favorite.
-       - Provides visual indicators for favorited cards.
+       - Provides visual indicators for favored cards.
 
     9. Favorites Page:
-       - Displays all favorited business cards.
+       - Displays all favored business cards.
        - Allows users to remove cards from favorites.
 
     10. HTTP Requests:
@@ -62,21 +62,26 @@ The Business Card and User Management System is a web application designed in Re
 
     14.Accessibility:
        - Sets the application title in the main index file.
-       - Includes a favicon with a meaningful alt attribute for accessibility.
+       - Includes a favicon and images with a meaningful alt attribute for accessibility.
 
     15.About Page:
        - Provides detailed information about the application and its functionality.
 
-    16. Forms:
+    12. Forms:
        - Ensures uniform design and validation for all forms.
        - Provides visual feedback for validation requirements.
 
-Installation
-
-To install and run the Business Card and User Management System locally, follow these steps:
-
-    1.Clone the repository:git clone https://github.com/edward1Yadid/reactProject
-    2.  Open the index.html file in your preferred web browser to start using the app.
+    13. Redux:
+       - This App is using Redux for state management with redux toolkit
+       - We also user persist-redux to keep important data from being deleted on refresh
+    14. Typescript:
+       - This whole app was written in Typescript as opposed to Javascript
+       - Lets me have a pleasant coding experience with errors being caught before I get to them in runtime.
+    15. User Management
+       - Admin users have access to a user list, where then can view, edit and delete users
+    16. react-viewport-list
+       - I used react-viewport-list for the user list, since it needed to load a big amount of data and render it.
+       - react-viewport-list renders only items of the list that are in the viewport, that way the app is still fast.
 
 
 
