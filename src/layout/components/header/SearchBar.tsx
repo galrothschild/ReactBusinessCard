@@ -2,8 +2,8 @@ import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { memo, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { memo } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
