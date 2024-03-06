@@ -4,6 +4,7 @@ import { memo } from "react";
 import { useForm } from "../hooks/useForm";
 import { RestartAlt } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material";
 interface FormProps {
 	title: string;
 	inputs: string[];
@@ -12,6 +13,7 @@ interface FormProps {
 }
 
 const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
+	const theme = useTheme();
 	const {
 		onSubmit,
 		handleInputChange,
@@ -24,7 +26,11 @@ const Form = ({ title, inputs, colNum, formActions }: FormProps) => {
 	const navigate = useNavigate();
 	return (
 		<Container className="flex flex-col items-center text-center">
-			<Typography variant="h2" fontSize={32}>
+			<Typography
+				variant="h2"
+				fontSize={32}
+				color={theme.palette.mode === "dark" ? "#fff" : "#121212"}
+			>
 				{title}
 			</Typography>
 			<Typography variant="h5" color="error">

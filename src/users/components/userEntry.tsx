@@ -51,18 +51,14 @@ const UserEntry: React.FC<userEntryProps> = ({ user }) => {
 				variant="outlined"
 				color="info"
 				sx={{ ml: { md: "auto", xs: "unset" } }}
-				onClick={() => {
-					navigate(`/${ROUTES.EDIT_USER}/${user._id}`);
-				}}
+				href={`#${ROUTES.EDIT_USER}/${user._id}`}
 			>
 				Edit User
 			</Button>
 			<Button
 				variant="outlined"
 				color="info"
-				onClick={() => {
-					navigate(`/${ROUTES.USER_PROFILE}/${user._id}`);
-				}}
+				href={`#${ROUTES.USER_PROFILE}/${user._id}`}
 			>
 				View User
 			</Button>

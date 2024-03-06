@@ -46,8 +46,9 @@ export const createCardSchema = Joi.object({
 		.regex(/^[+\d]{10,15}$/)
 		.rule({ message: "Phone must be at least 10 digits" }),
 	state: Joi.string()
-		.regex(/^[a-zA-Z '0-9]+$/)
-		.rule({ message: "Must only include English letters and digits" }),
+		.regex(/^[a-zA-Z '0-9]*$/)
+		.rule({ message: "Must only include English letters and digits" })
+		.allow(""),
 	country: Joi.string()
 		.regex(/^[a-zA-Z '0-9]+$/)
 		.rule({ message: "Must only include English letters and digits" })
